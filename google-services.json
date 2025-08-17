@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:711117337037:android:9f6abc6adad8329e3f1484",
+        "mobilesdk_app_id": "1:711117337037:android:959db2d075182e0d3f1484",
         "android_client_info": {
-          "package_name": "hodiencong.cpp"
+          "package_name": "hodiencong.android.app"
         }
       },
       "oauth_client": [],
