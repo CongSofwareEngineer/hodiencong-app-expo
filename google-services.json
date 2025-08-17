@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "711117337037",
+    "project_id": "ho-dien-cong",
+    "storage_bucket": "ho-dien-cong.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711117337037:android:9f6abc6adad8329e3f1484",
+        "android_client_info": {
+          "package_name": "hodiencong.cpp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlFRRxfo9pkh8GlSrq2I7tf6Wg-ikdRa0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
