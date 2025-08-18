@@ -1,8 +1,4 @@
-import {
-  focusManager,
-  QueryClient,
-  QueryClientProvider
-} from '@tanstack/react-query'
+import { focusManager, QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactNode, useEffect } from 'react'
 import { AppState, AppStateStatus, Platform } from 'react-native'
 
@@ -13,10 +9,10 @@ function onAppStateChange(status: AppStateStatus) {
   }
 }
 
-
 function useAppState(onChange: (status: AppStateStatus) => void) {
   useEffect(() => {
     const subscription = AppState.addEventListener('change', onChange)
+
     return () => {
       subscription.remove()
     }
@@ -26,18 +22,15 @@ function useAppState(onChange: (status: AppStateStatus) => void) {
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 2
-    }
-  }
+      retry: 2,
+    },
+  },
 })
 
 const ReactQueryProvider = ({ children }: { children: ReactNode }) => {
-
   useAppState(onAppStateChange)
 
-  return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  )
+  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 }
 
 export default ReactQueryProvider

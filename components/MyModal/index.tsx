@@ -7,12 +7,12 @@ import { useThemeColor } from '@/hooks/useThemeColor'
 const MyModal = () => {
   const { modal, closeModal } = useModal()
   const backgroundModal = useThemeColor('backgroundModal')
-  const backgroundContentModal = ('backgroundContentModal')
+  const backgroundContentModal = 'backgroundContentModal'
   const color = useThemeColor('text')
 
-  return <>
-    {
-      modal?.map((modal, index) => (
+  return (
+    <>
+      {modal?.map((modal, index) => (
         <Modal
           {...modal.config}
           style={{
@@ -25,7 +25,6 @@ const MyModal = () => {
             closeModal()
             modal?.onClose?.()
           }}
-
           key={`modal-${index}`}
         >
           <ScrollView
@@ -67,9 +66,9 @@ const MyModal = () => {
             </SafeAreaView>
           </ScrollView>
         </Modal>
-      ))
-    }
-  </>
+      ))}
+    </>
+  )
 }
 
 export default MyModal

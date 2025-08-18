@@ -12,9 +12,12 @@ export const checkSupportSecure = async () => {
 
 export const generateKey = () => {
   // byteLength = số byte random, 32 byte ~ 256-bit
-  const randomBytes = new Uint8Array(32)
 
-  crypto.getRandomValues(randomBytes)
+  const randomBytes = []
+
+  for (let i = 0; i < 64; i++) {
+    randomBytes.push(Math.floor(Math.random() * 256))
+  }
 
   // Chuyển Uint8Array -> chuỗi Base64
   let binary = ''
@@ -23,14 +26,14 @@ export const generateKey = () => {
     binary += String.fromCharCode(randomBytes[i])
   }
 
-  return btoa(binary).replace(/\+-/g, '@').replace(/\//g, '@')
+
+  return btoa(binary).replace(/\+-/g, '@').replace(/\//g, '@').slice(0, 16)
 }
 
 
 const create = async () => {
   let encryptionKey: string | null = process.env.EXPO_PUBLIC_KEY_ENCODE_STORAGE
   const isSupport = await checkSupportSecure()
-  console.log({ isSupport });
 
   if (isSupport) {
     encryptionKey = await SecureStore.getItemAsync(KEY_CHAIN.keyEncrypt, {
@@ -46,7 +49,6 @@ const create = async () => {
       })
     }
   }
-  console.log({ encryptionKey });
 
   const storage = new MMKV({ id: 'SECURE_LOCAL_STORAGE', encryptionKey })
 
@@ -68,8 +70,11 @@ export const getSecureData = async (key: KEY_CHAIN, defaultData: any = null) => 
     const storage = await create()
     const jsonValue = storage.getString(key) ?? ''
 
+
     return JSON.parse(jsonValue)
   } catch {
+
+
     return defaultData
   }
 }

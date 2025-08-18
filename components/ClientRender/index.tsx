@@ -1,9 +1,8 @@
 import { ReactNode } from 'react'
+
 import MyModal from '../MyModal'
 
 const ClientRender = ({ children }: { children: ReactNode }) => {
-
-
   return (
     <>
       {children}

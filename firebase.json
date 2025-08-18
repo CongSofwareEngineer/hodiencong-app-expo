@@ -1,3 +1,13 @@
 {
-  "messaging_android_notification_delegation_enabled": true
+  "messaging_android_notification_delegation_enabled": true,
+  "react-native": {
+    "messaging_android_notification_channel_id": "high-priority",
+    "messaging_ios_foreground_presentation_options": [
+      "badge",
+      "sound",
+      "list",
+      "banner"
+    ],
+     "messaging_android_notification_color": "@color/hotpink"
+  }
 }

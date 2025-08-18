@@ -1,0 +1,38 @@
+{
+  "common": {
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "logout": "Đăng xuất",
+    "home": "Trang chủ",
+    "search": "Tìm kiếm",
+    "cart": "Giỏ hàng",
+    "profile": "Tài khoản",
+    "language": "Ngôn ngữ",
+    "back": "Quay lại",
+    "close": "Đóng"
+  },
+  "userName": "Tên người dùng",
+  "password": "Mật khẩu",
+  "login": {
+    "titlePage": "Đăng nhập"
+  },
+  "homeScreen": {
+    "titlePage": "Trang chủ",
+    "search": "Tìm kiếm"
+  },
+  "production": {
+    "titlePage": "Sản phẩm"
+  },
+  "setting": {
+    "titlePage": "Cài đặt",
+    "language": "Ngôn ngữ",
+    "darkMode": "Chế độ",
+    "dark": "Tối",
+    "light": "Sáng"
+  },
+  "warning": {
+    "logout": "Bạn có muốn đăng xuất?",
+    "success": "Thành công",
+    "warning": "Cảnh báo"
+  }
+}

@@ -1,3 +1,4 @@
+import MessageEN from '@/assets/language/en.json'
 import { KEY_STORAGE } from '@/constants/storage'
 import { getDataLocal, removeDataLocal, saveDataLocal } from '@/utils/Storage'
 import { create } from 'zustand'
@@ -10,27 +11,46 @@ enum LANGUAGE_SUPPORT {
 type LanguageState = {
   language: {
     locale: LANGUAGE_SUPPORT
-    messages: any
+    messages: MessageEN
   }
   setLanguage: (locale: LANGUAGE_SUPPORT) => void
 }
+
+type Language = {
+  locale: LANGUAGE_SUPPORT
+  messages: MessageEN
+}
+
+const getLanguage = (language: LANGUAGE_SUPPORT): Language => {
+  switch (language) {
+    case LANGUAGE_SUPPORT.EN:
+      return {
+        locale: LANGUAGE_SUPPORT.EN,
+        messages: MessageEN,
+      }
+
+    default:
+      return {
+        locale: LANGUAGE_SUPPORT.VN,
+        messages: MessageEN,
+      }
+  }
+}
+
+
+
 export const languageZustand = create<LanguageState>()(
   devtools(
     persist((set) => ({
       language: {
-        locale: LANGUAGE_SUPPORT.VN,
-        messages: {},
+        locale: LANGUAGE_SUPPORT.EN,
+        messages: MessageEN,
       },
 
       setLanguage: (locale: LANGUAGE_SUPPORT) => {
+        const language = getLanguage(locale)
 
-
-        set({
-          language: {
-            locale,
-            messages: {}
-          }
-        })
+        set({ language })
 
       },
     }), {
@@ -40,12 +60,10 @@ export const languageZustand = create<LanguageState>()(
 
           const local = getDataLocal(KEY_STORAGE.Language)
           if (local) {
+            const language = getLanguage(local)
             return {
               state: {
-                language: {
-                  locale: local,
-                  messages: {}
-                }
+                language
               }
             }
           }
