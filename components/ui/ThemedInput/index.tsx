@@ -42,17 +42,19 @@ const ThemedInput = ({
       {label && <ThemedText>{label}</ThemedText>}
       <View
         style={{
-          width: '100%',
+          // width: '100%',
           gap: 8,
         }}
       >
         <View
-          className=' border-b-[1px] border-gray-700'
+          // className=' border-b-[1px] border-gray-700'
           style={{
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
             gap: 0,
+            width: '100%',
+            flex: 1,
           }}
         >
           {leftIcon && (

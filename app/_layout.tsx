@@ -12,6 +12,7 @@ import { hydrateZustand } from '@/zustand/hydrate'
 import useLanguage from '@/hooks/useLanguage'
 import { useThemeColor } from '@/hooks/useThemeColor'
 import { MODE } from '@/constants/app'
+import PaperProvider from '@/components/PaperProvider'
 
 export default function RootLayout() {
   usePreLoadData()
@@ -33,54 +34,56 @@ export default function RootLayout() {
 
   return (
     <ReactQueryProvider>
-      <ThemeProvider value={colorScheme === MODE.Dark ? DarkTheme : DefaultTheme}>
-        <ClientRender>
-          <Stack
-            screenOptions={{
-              contentStyle: {
-                backgroundColor: 'red',
-              },
-            }}
-            initialRouteName='login'
-          >
-            <Stack.Screen
-              name='(tab-navigation)'
-              options={{
-                headerShown: false,
-                // title: translate('common.back'),
-                headerBackTitleStyle: {
-                  fontSize: 8,
+      <PaperProvider>
+        <ThemeProvider value={colorScheme === MODE.Dark ? DarkTheme : DefaultTheme}>
+          <ClientRender>
+            <Stack
+              screenOptions={{
+                contentStyle: {
+                  backgroundColor: background,
                 },
-                headerTitle: translate('common.back'),
-                headerTitleStyle: {
-                  fontSize: 8,
-                },
-                headerBackTitle: translate('common.back'),
               }}
-            />
-            <Stack.Screen name='+not-found' />
-            <Stack.Screen name='login' options={{ title: translate('login.titlePage'), headerShown: false }} />
-            <Stack.Screen name='tc-store' options={{ title: translate('production.titlePage') }} />
-            <Stack.Screen
-              name='tc-store/production'
-              options={{
-                title: translate('production.titlePage'),
-              }}
-            />
-            <Stack.Screen
-              name='thayhongtoan/list-register'
-              options={{
-                title: translate('production.titlePage'),
-                // headerStyle: {
-                //   backgroundColor: backgroundHeaderPage,
-                // },
-              }}
-            />
-            <Stack.Screen name='setting' options={{ title: translate('production.titlePage') }} />
-          </Stack>
-          <StatusBar style={colorScheme === MODE.Dark ? 'light' : 'dark'} />
-        </ClientRender>
-      </ThemeProvider>
+              initialRouteName='login'
+            >
+              <Stack.Screen
+                name='(tab-navigation)'
+                options={{
+                  headerShown: false,
+                  // title: translate('common.back'),
+                  headerBackTitleStyle: {
+                    fontSize: 8,
+                  },
+                  headerTitle: translate('common.back'),
+                  headerTitleStyle: {
+                    fontSize: 8,
+                  },
+                  headerBackTitle: translate('common.back'),
+                }}
+              />
+              <Stack.Screen name='+not-found' />
+              <Stack.Screen name='login' options={{ title: translate('login.titlePage'), headerShown: false }} />
+              <Stack.Screen name='tc-store' options={{ title: translate('production.titlePage') }} />
+              <Stack.Screen
+                name='tc-store/production'
+                options={{
+                  title: translate('production.titlePage'),
+                }}
+              />
+              <Stack.Screen
+                name='thayhongtoan/list-register'
+                options={{
+                  title: translate('production.titlePage'),
+                  // headerStyle: {
+                  //   backgroundColor: backgroundHeaderPage,
+                  // },
+                }}
+              />
+              <Stack.Screen name='setting' options={{ title: translate('production.titlePage') }} />
+            </Stack>
+            <StatusBar style={colorScheme === MODE.Dark ? 'light' : 'dark'} />
+          </ClientRender>
+        </ThemeProvider>
+      </PaperProvider>
     </ReactQueryProvider>
   )
 }
