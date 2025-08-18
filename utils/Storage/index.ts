@@ -1,31 +1,17 @@
-import { KEY_CHAIN } from '@/constants/keyChain'
 import { MMKV } from 'react-native-mmkv'
-import { checkSupportSecure, generateKey, getSecureData, saveSecureData } from '../secureStorage'
 
 
 
-const create = async (isSecure = false) => {
-  let encryptionKey = process.env.EXPO_PUBLIC_KEY_ENCODE_STORAGE
+const create = () => {
 
-  if (isSecure) {
-    const isSupport = await checkSupportSecure()
-
-    if (isSupport) {
-      encryptionKey = await getSecureData(KEY_CHAIN.keyEncrypt)
-      if (!encryptionKey) {
-        encryptionKey = generateKey()
-        saveSecureData(KEY_CHAIN.keyEncrypt, encryptionKey)
-      }
-    }
-  }
-  const storage = new MMKV({ id: 'LOCAL_STORAGE', encryptionKey })
+  const storage = new MMKV({ id: 'LOCAL_STORAGE', encryptionKey: process.env.EXPO_PUBLIC_KEY_ENCODE_STORAGE })
 
   return storage
 }
 
-export const getDataLocal = async (key: string, isSecure = false) => {
+export const getDataLocal = (key: string,) => {
   try {
-    const storage = await create(isSecure)
+    const storage = create()
     const jsonValue = storage.getString(key) ?? ''
 
     return JSON.parse(jsonValue)
@@ -34,9 +20,9 @@ export const getDataLocal = async (key: string, isSecure = false) => {
   }
 }
 
-export const removeDataLocal = async (key: string, isSecure = false) => {
+export const removeDataLocal = (key: string,) => {
   try {
-    const storage = await create(isSecure)
+    const storage = create()
 
     storage.delete(key)
 
@@ -46,9 +32,9 @@ export const removeDataLocal = async (key: string, isSecure = false) => {
   }
 }
 
-export const saveDataLocal = async (key: string, value: any, isSecure = false) => {
+export const saveDataLocal = (key: string, value: any,) => {
   try {
-    const storage = await create(isSecure)
+    const storage = create()
 
     storage.set(key, JSON.stringify(value))
 

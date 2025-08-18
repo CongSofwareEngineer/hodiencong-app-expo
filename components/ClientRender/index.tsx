@@ -1,16 +1,14 @@
-import { languageZustand } from '@/zustand/language'
-import { ReactNode, useEffect } from 'react'
+import { ReactNode } from 'react'
+import MyModal from '../MyModal'
 
 const ClientRender = ({ children }: { children: ReactNode }) => {
-  const { language } = languageZustand(state => state)
-  useEffect(() => {
-    console.log('====================================');
-    console.log({ language });
-    console.log('====================================');
-  }, [language])
+
 
   return (
-    children
+    <>
+      {children}
+      <MyModal />
+    </>
   )
 }
 

@@ -1,5 +1,7 @@
+import { KEY_STORAGE } from '@/constants/storage'
+import { getDataLocal, removeDataLocal, saveDataLocal } from '@/utils/Storage'
 import { create } from 'zustand'
-import { devtools } from 'zustand/middleware'
+import { devtools, persist } from 'zustand/middleware'
 
 enum LANGUAGE_SUPPORT {
   VN = 'vn',
@@ -14,7 +16,7 @@ type LanguageState = {
 }
 export const languageZustand = create<LanguageState>()(
   devtools(
-    (set) => ({
+    persist((set) => ({
       language: {
         locale: LANGUAGE_SUPPORT.VN,
         messages: {},
@@ -31,6 +33,34 @@ export const languageZustand = create<LanguageState>()(
         })
 
       },
+    }), {
+      storage: {
+        getItem: () => {
+
+
+          const local = getDataLocal(KEY_STORAGE.Language)
+          if (local) {
+            return {
+              state: {
+                language: {
+                  locale: local,
+                  messages: {}
+                }
+              }
+            }
+          }
+          return null
+        },
+        removeItem: () => {
+          removeDataLocal(KEY_STORAGE.Language)
+
+        },
+        setItem: (_, value) => {
+          const locale = value.state.language.locale
+          saveDataLocal(KEY_STORAGE.Language, locale)
+        }
+      },
+      name: 'language-zustand',
     }),
     {
       name: 'language-zustand',

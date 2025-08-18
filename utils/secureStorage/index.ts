@@ -1,5 +1,6 @@
 import { KEY_CHAIN } from '@/constants/keyChain';
 import * as SecureStore from 'expo-secure-store';
+import { MMKV } from 'react-native-mmkv';
 export const checkSupportSecure = async () => {
   try {
 
@@ -25,19 +26,38 @@ export const generateKey = () => {
   return btoa(binary).replace(/\+-/g, '@').replace(/\//g, '@')
 }
 
-export const saveSecureData = async (key: KEY_CHAIN, value: any) => {
-  try {
-    const service = `${key}_service`
-    const title = `Auth require ${key}`
-    const password = JSON.stringify(value)
 
-    await SecureStore.setItemAsync(key, password, {
-      keychainService: service,
+const create = async () => {
+  let encryptionKey: string | null = process.env.EXPO_PUBLIC_KEY_ENCODE_STORAGE
+  const isSupport = await checkSupportSecure()
+  console.log({ isSupport });
+
+  if (isSupport) {
+    encryptionKey = await SecureStore.getItemAsync(KEY_CHAIN.keyEncrypt, {
       keychainAccessible: SecureStore.WHEN_UNLOCKED,
-      authenticationPrompt: title
+      authenticationPrompt: `Auth require ${KEY_CHAIN.keyEncrypt}`
     })
 
-    return true
+    if (!encryptionKey) {
+      encryptionKey = generateKey()
+      SecureStore.setItemAsync(KEY_CHAIN.keyEncrypt, encryptionKey, {
+        keychainAccessible: SecureStore.WHEN_UNLOCKED,
+        authenticationPrompt: `Auth require ${KEY_CHAIN.keyEncrypt}`
+      })
+    }
+  }
+  console.log({ encryptionKey });
+
+  const storage = new MMKV({ id: 'SECURE_LOCAL_STORAGE', encryptionKey })
+
+  return storage
+}
+
+export const saveSecureData = async (key: KEY_CHAIN, value: any) => {
+  try {
+    const storage = await create()
+
+    storage.set(key, JSON.stringify(value))
   } catch {
     return false
   }
@@ -45,16 +65,10 @@ export const saveSecureData = async (key: KEY_CHAIN, value: any) => {
 
 export const getSecureData = async (key: KEY_CHAIN, defaultData: any = null) => {
   try {
-    const service = `${key}_service`
-    const title = `Auth require ${key}`
-    const creds = await SecureStore.getItemAsync(key, {
-      keychainService: service,
-      keychainAccessible: SecureStore.WHEN_UNLOCKED,
-      authenticationPrompt: title
-    })
+    const storage = await create()
+    const jsonValue = storage.getString(key) ?? ''
 
-
-    return creds
+    return JSON.parse(jsonValue)
   } catch {
     return defaultData
   }
@@ -62,11 +76,9 @@ export const getSecureData = async (key: KEY_CHAIN, defaultData: any = null) => 
 
 export const removeSecureData = async (key: KEY_CHAIN) => {
   try {
-    const service = `${key}_service`
+    const storage = await create()
 
-    await SecureStore.deleteItemAsync(key, {
-      keychainService: service,
-    })
+    storage.delete(key)
 
     return true
   } catch {

@@ -7,27 +7,21 @@ import 'react-native-reanimated';
 import ClientRender from '@/components/ClientRender';
 import PreLoadData from '@/components/PreLoadData';
 import ReactQueryProvider from '@/components/ReactQueryProvider';
-import { KEY_STORAGE } from '@/constants/storage';
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { saveDataLocal } from '@/utils/Storage';
-import { useEffect } from 'react';
+import useMode from '@/hooks/useMode';
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const { mode: colorScheme } = useMode();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
+
 
   if (!loaded) {
     // Async font loading only occurs in development.
     return null;
   }
 
-  useEffect(() => {
-    saveDataLocal(KEY_STORAGE.Language, 'en')
 
-
-  }, [])
 
 
   return (

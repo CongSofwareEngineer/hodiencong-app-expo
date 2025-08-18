@@ -1,12 +1,19 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { MODE } from '@/constants/app';
+import { KEY_CHAIN } from '@/constants/keyChain';
+import useModal from '@/hooks/useModal';
+import useMode from '@/hooks/useMode';
+import { saveSecureData } from '@/utils/secureStorage';
 
 export default function HomeScreen() {
+  const { mode, setMode } = useMode()
+  const { openModal, closeModal } = useModal()
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -17,9 +24,58 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
+        <ThemedText type="title">Welcome! cong</ThemedText>
         <HelloWave />
       </ThemedView>
+      <TouchableOpacity
+        onPress={() => {
+          setMode(mode === MODE.Light ? MODE.Dark : MODE.Light)
+        }}
+      >
+        <ThemedText type="title">
+          {mode === MODE.Light ? 'Light' : 'Dark'}
+        </ThemedText>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => {
+          saveSecureData(KEY_CHAIN.Token, 'token')
+        }}
+      >
+        <ThemedText type="title">
+          save secure
+        </ThemedText>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => {
+          openModal({
+            content: (
+              <View>
+                <ThemedText type="title">
+                  Open modal
+                </ThemedText>
+                <TouchableOpacity
+                  onPress={closeModal}
+                >
+                  <ThemedText type="title">
+                    Close modal
+                  </ThemedText>
+                </TouchableOpacity>
+
+
+              </View>
+
+            )
+          })
+        }}
+      >
+        <ThemedText type="title">
+          Open modal
+        </ThemedText>
+      </TouchableOpacity>
+
+
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
         <ThemedText>
