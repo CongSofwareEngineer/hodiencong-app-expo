@@ -2,9 +2,9 @@ import { KEY_STORAGE } from "@/constants/storage"
 import { getDataLocal } from "@/utils/Storage"
 import { languageZustand } from "@/zustand/language"
 import { modeZustand } from "@/zustand/mode"
-import { useLayoutEffect } from "react"
+import { ReactNode, useLayoutEffect } from "react"
 
-const PreLoadData = () => {
+const PreLoadData = ({ children }: { children: ReactNode }) => {
   const { setLanguage } = languageZustand(state => state)
   const { setMode } = modeZustand(state => state)
 
@@ -31,7 +31,7 @@ const PreLoadData = () => {
 
 
   return (
-    <></>
+    children
   )
 }
 
