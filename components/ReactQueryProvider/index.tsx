@@ -1,10 +1,9 @@
-import { useOnlineManager } from '@/hooks/useOnlineManager'
 import {
   focusManager,
   QueryClient,
   QueryClientProvider
 } from '@tanstack/react-query'
-import React, { ReactNode, useEffect } from 'react'
+import { ReactNode, useEffect } from 'react'
 import { AppState, AppStateStatus, Platform } from 'react-native'
 
 function onAppStateChange(status: AppStateStatus) {
@@ -33,7 +32,6 @@ const queryClient = new QueryClient({
 })
 
 const ReactQueryProvider = ({ children }: { children: ReactNode }) => {
-  useOnlineManager()
 
   useAppState(onAppStateChange)
 
