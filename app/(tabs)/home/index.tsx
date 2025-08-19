@@ -9,6 +9,7 @@ import ThemedText from '@/components/ui/ThemedText'
 import { useThemeColor } from '@/hooks/useThemeColor'
 import useModal from '@/hooks/useModal'
 import SafeAreaView from '@/components/SafeAreaView'
+import ThemedTouchable from '@/components/ThemedTouchable'
 
 import { styles } from './style'
 
@@ -62,9 +63,9 @@ const HomeScreen = () => {
           <ThemedText>Home</ThemedText>
         </View>
 
-        <TouchableOpacity onPress={handleLogin} style={{ marginVertical: 20 }}>
-          <ThemedText type='link'>open Modal</ThemedText>
-        </TouchableOpacity>
+        <ThemedTouchable onPress={handleLogin} style={{ marginVertical: 20 }}>
+          open Modal
+        </ThemedTouchable>
 
         <ThemedInput
           showCount

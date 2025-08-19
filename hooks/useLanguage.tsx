@@ -1,13 +1,11 @@
+import { Fragment } from 'react'
 
 import { LANGUAGE_SUPPORT, PATH_LANGUAGE, TYPE_LANGUAGE } from '@/type/language'
 import { languageZustand } from '@/zustand/language'
-import { Fragment } from 'react'
 
 const useLanguage = () => {
   const { language, setLanguage } = languageZustand((state) => state)
-  console.log('====================================');
-  console.log({ language });
-  console.log('====================================');
+
   const translate = (
     key?: PATH_LANGUAGE<TYPE_LANGUAGE>,
     variables?: Record<string, string | number | React.ReactNode | ((value: string | number) => React.ReactNode)>,
@@ -94,7 +92,7 @@ const useLanguage = () => {
 
   return {
     translate,
-    lang: language?.locale || LANGUAGE_SUPPORT.EN,
+    lang: (language?.locale || LANGUAGE_SUPPORT.EN) as LANGUAGE_SUPPORT,
     setLanguage,
   }
 }

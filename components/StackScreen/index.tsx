@@ -2,7 +2,6 @@ import React from 'react'
 import { ParamListBase, StackNavigationState } from '@react-navigation/native'
 import { createNativeStackNavigator, NativeStackNavigationEventMap, NativeStackNavigationOptions } from '@react-navigation/native-stack'
 import { withLayoutContext } from 'expo-router'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import HomeScreen from '@/app/(tabs)/home'
 import LoginScreen from '@/app/login'
@@ -15,7 +14,6 @@ import ListRegisterScreen from '@/app/thayhongtoan/list-register'
 import NotFoundScreen from '@/app/+not-found'
 
 const { Navigator, Screen } = createNativeStackNavigator()
-const Tab = createBottomTabNavigator()
 
 export const JsStack = withLayoutContext<
   NativeStackNavigationOptions,

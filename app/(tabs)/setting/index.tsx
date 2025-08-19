@@ -1,7 +1,6 @@
 import { useRouter } from 'expo-router'
 import React from 'react'
 import { View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
 
 import ThemedScrollView from '@/components/ui/ThemedScrollView'
 import ThemedText from '@/components/ui/ThemedText'
@@ -12,10 +11,13 @@ import useMode from '@/hooks/useMode'
 import { useUser } from '@/hooks/useUser'
 import ThemedCheckbox from '@/components/ui/ThemedCheckbox'
 import { MODE } from '@/constants/app'
-import { styles } from '@/styles/app'
+import SafeAreaView from '@/components/SafeAreaView'
+import { LANGUAGE_SUPPORT } from '@/type/language'
+
+import { styles } from './styles'
 
 const SettingScreen = () => {
-  const { translate } = useLanguage()
+  const { translate, lang } = useLanguage()
   const { mode, setMode } = useMode()
   const { setUser } = useUser()
   const { openModal } = useModal()
@@ -34,10 +36,11 @@ const SettingScreen = () => {
 
   return (
     <ThemedScrollView>
-      <SafeAreaView style={[styles.safeArea]}>
-        <View className='gap-2'>
-          <ThemedText>{`${translate('setting.darkMode')} :`}</ThemedText>
-          <View className='flex flex-row gap-10 w-full'>
+      <SafeAreaView style={[styles.container]}>
+        <View style={[styles.containerItem]}>
+          <ThemedText type='subtitle' style={{ width: '100%', textAlign: 'center', marginTop: 20 }}>{`${translate('setting.titlePage')}`}</ThemedText>
+          <ThemedText>{`${translate('setting.darkMode')}`}</ThemedText>
+          <View style={styles.containerItemSub}>
             <ThemedCheckbox onChange={(e) => setMode(MODE.Dark)} checked={mode === MODE.Dark}>
               <ThemedText>{translate('setting.dark')}</ThemedText>
             </ThemedCheckbox>
@@ -46,17 +49,18 @@ const SettingScreen = () => {
             </ThemedCheckbox>
           </View>
         </View>
-        {/* <View className='gap-2'>
+
+        <View style={[styles.containerItem]}>
           <ThemedText>{`${translate('setting.language')} :`}</ThemedText>
-          <View className='flex flex-row gap-10 w-full'>
-            <ThemedCheckbox>
+          <View style={styles.containerItemSub}>
+            <ThemedCheckbox checked={lang === LANGUAGE_SUPPORT.EN}>
               <ThemedText>Vietnamese</ThemedText>
             </ThemedCheckbox>
             <ThemedCheckbox>
               <ThemedText>English</ThemedText>
             </ThemedCheckbox>
           </View>
-        </View> */}
+        </View>
 
         <ThemedText
           style={{

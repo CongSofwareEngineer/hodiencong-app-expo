@@ -1,12 +1,13 @@
-import MessageEN from '@/assets/language/en.json'
-import { KEY_STORAGE } from '@/constants/storage'
-import { getDataLocal, removeDataLocal, saveDataLocal } from '@/utils/Storage'
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 
+import MessageEN from '@/assets/language/en.json'
+import { KEY_STORAGE } from '@/constants/storage'
+import { getDataLocal, removeDataLocal, saveDataLocal } from '@/utils/Storage'
+
 enum LANGUAGE_SUPPORT {
   VN = 'vn',
-  EN = 'en'
+  EN = 'en',
 }
 type LanguageState = {
   language: {
@@ -37,49 +38,50 @@ const getLanguage = (language: LANGUAGE_SUPPORT): Language => {
   }
 }
 
-
-
 export const languageZustand = create<LanguageState>()(
   devtools(
-    persist((set) => ({
-      language: {
-        locale: LANGUAGE_SUPPORT.EN,
-        messages: MessageEN,
-      },
+    persist(
+      (set) => ({
+        language: {
+          locale: LANGUAGE_SUPPORT.EN,
+          messages: MessageEN,
+        },
 
-      setLanguage: (locale: LANGUAGE_SUPPORT) => {
-        const language = getLanguage(locale)
+        setLanguage: (locale: LANGUAGE_SUPPORT) => {
+          const language = getLanguage(locale)
 
-        set({ language })
+          set({ language })
+        },
+      }),
+      {
+        storage: {
+          getItem: () => {
+            const local = getDataLocal(KEY_STORAGE.Language)
 
-      },
-    }), {
-      storage: {
-        getItem: () => {
+            if (local) {
+              const language = getLanguage(local)
 
-
-          const local = getDataLocal(KEY_STORAGE.Language)
-          if (local) {
-            const language = getLanguage(local)
-            return {
-              state: {
-                language
+              return {
+                state: {
+                  language,
+                },
               }
             }
-          }
-          return null
-        },
-        removeItem: () => {
-          removeDataLocal(KEY_STORAGE.Language)
 
+            return null
+          },
+          removeItem: () => {
+            removeDataLocal(KEY_STORAGE.Language)
+          },
+          setItem: (_, value) => {
+            const locale = value.state.language.locale
+
+            saveDataLocal(KEY_STORAGE.Language, locale)
+          },
         },
-        setItem: (_, value) => {
-          const locale = value.state.language.locale
-          saveDataLocal(KEY_STORAGE.Language, locale)
-        }
-      },
-      name: 'language-zustand',
-    }),
+        name: 'language-zustand',
+      }
+    ),
     {
       name: 'language-zustand',
       enabled: process.env.NEXT_PUBLIC_ENV !== 'production',
