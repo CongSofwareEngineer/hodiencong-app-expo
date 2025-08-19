@@ -1,6 +1,6 @@
 import { Link } from 'expo-router'
 import React from 'react'
-import { SafeAreaView } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 import ThemedScrollView from '@/components/ui/ThemedScrollView'
 import ThemedText from '@/components/ui/ThemedText'

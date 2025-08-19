@@ -34,5 +34,8 @@
     "logout": "Bạn có muốn đăng xuất?",
     "success": "Thành công",
     "warning": "Cảnh báo"
+  },
+  "thayHongToan": {
+    "listRegister": "Danh sách đăng ký"
   }
 }

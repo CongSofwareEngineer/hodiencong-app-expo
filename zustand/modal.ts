@@ -2,7 +2,6 @@ import { ModalProps } from 'react-native'
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 
-
 type Modal = {
   config?: ModalProps
   open?: boolean
@@ -11,6 +10,7 @@ type Modal = {
   onClose?: () => any
   showIconClose?: boolean
   addModal?: boolean
+  maskClosable?: boolean
 }
 
 type ModalState = {
@@ -26,24 +26,27 @@ export const modalZustand = create<ModalState>()(
 
       openModal: (param?: Modal) => {
         const listModals = get().modal
-        if (listModals.length > 0) {
+
+        if (listModals.length > 0 && !param?.addModal) {
           const lastModal = listModals.pop()
+
           set({
-            modal: [...listModals, {
-              ...lastModal,
-              open: true,
-            }],
+            modal: [
+              ...listModals,
+              {
+                showIconClose: true,
+                maskClosable: true,
+                ...param,
+                ...lastModal,
+                open: true,
+              },
+            ],
           })
         } else {
           set({
-            modal: [...listModals, {
-              ...param,
-              open: true,
-            }],
+            modal: [...listModals, { showIconClose: true, maskClosable: true, ...param, open: true }],
           })
         }
-
-
       },
       closeModal: () => {
         const listModals = get().modal

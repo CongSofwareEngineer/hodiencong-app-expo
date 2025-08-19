@@ -1,26 +1,34 @@
-import { Tabs } from 'expo-router'
 import React from 'react'
-import { Platform, useColorScheme } from 'react-native'
+import { Platform } from 'react-native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import AntDesign from '@expo/vector-icons/AntDesign'
 import Entypo from '@expo/vector-icons/Entypo'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 
-import { HapticTab } from '@/components/HapticTab'
-import { IconSymbol } from '@/components/ui/IconSymbol'
-import TabBarBackground from '@/components/ui/TabBarBackground'
-import { ColorThemes } from '@/constants/Colors'
 import useLanguage from '@/hooks/useLanguage'
 import { useThemeColor } from '@/hooks/useThemeColor'
+import { ColorThemes } from '@/constants/Colors'
+import { HapticTab } from '@/components/HapticTab'
+import TabBarBackground from '@/components/ui/TabBarBackground'
+import useMode from '@/hooks/useMode'
+
+import HomeScreen from './home'
+import TcStoreScreen from './tc-store'
+import ThayHongToanScreen from './thayhongtoan'
+import SettingScreen from './setting'
+
+const Tab = createBottomTabNavigator()
+
 const TabNavigation = () => {
-  const colorScheme = useColorScheme()
+  const { mode } = useMode()
   const { translate } = useLanguage()
   const background = useThemeColor('background')
 
   return (
-    <Tabs
-      //   initialRouteName='home/index'
+    <Tab.Navigator
+      initialRouteName='home'
       screenOptions={{
-        tabBarActiveTintColor: ColorThemes[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: ColorThemes[mode].tint,
         headerShown: false,
         tabBarButton: HapticTab,
 
@@ -37,41 +45,35 @@ const TabNavigation = () => {
         },
       }}
     >
-      <Tabs.Screen
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({ color }) => <AntDesign name='home' size={24} color={color} />,
+        }}
         name='home'
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={24} name='house.fill' color={color} />,
-        }}
+        component={HomeScreen}
       />
-
-      <Tabs.Screen
-        name='thayhongtoan'
+      <Tab.Screen
         options={{
-          title: 'Thayhongtoan',
-          tabBarIcon: ({ color }) => <FontAwesome5 name='restroom' size={24} color={color} />,
-        }}
-      />
-
-      <Tabs.Screen
-        name='tc-store'
-        options={{
-          title: 'TC Store',
           tabBarIcon: ({ color }) => <Entypo name='shop' size={24} color={color} />,
         }}
+        name='tc-store'
+        component={TcStoreScreen}
       />
-
-      <Tabs.Screen
-        name='setting'
+      <Tab.Screen
         options={{
-          title: translate('setting.titlePage'),
-          headerTitle: translate('setting.titlePage'),
-          headerShown: true,
-          // tabBarIcon: ({ color }) => <IconSymbol size={24} name='figure.strengthtraining.traditional.circle' color={color} />,
+          tabBarIcon: ({ color }) => <FontAwesome5 name='restroom' size={24} color={color} />,
+        }}
+        name='thayhongtoan'
+        component={ThayHongToanScreen}
+      />
+      <Tab.Screen
+        options={{
           tabBarIcon: ({ color }) => <AntDesign name='setting' size={24} color={color} />,
         }}
+        name='setting'
+        component={SettingScreen}
       />
-    </Tabs>
+    </Tab.Navigator>
   )
 }
 

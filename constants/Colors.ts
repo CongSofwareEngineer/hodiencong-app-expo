@@ -16,6 +16,7 @@ export enum Colors {
 export const ColorThemes = {
   light: {
     text: '#11181C',
+    textPlaceholder: '#292d2fff',
     background: '#ECEDEE',
     tint: tintColorLight,
     icon: '#687076',
@@ -24,9 +25,11 @@ export const ColorThemes = {
     backgroundModal: '#000000cc',
     backgroundContentModal: '#d1d5db',
     backgroundHeaderPage: '#d1d5db',
+    backgroundInput: '#d1d5db',
   },
   dark: {
     text: '#ECEDEE',
+    textPlaceholder: '#6a6666ff',
     background: '#151718',
     tint: tintColorDark,
     icon: '#9BA1A6',
@@ -35,5 +38,6 @@ export const ColorThemes = {
     backgroundModal: '#000000cc',
     backgroundContentModal: '#1f2937',
     backgroundHeaderPage: '#d1d5db',
+    backgroundInput: '#303132ff',
   },
 }

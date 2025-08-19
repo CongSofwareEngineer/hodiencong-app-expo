@@ -4,6 +4,8 @@ import { TextInput, TextInputProps, TouchableOpacity, View } from 'react-native'
 import { ThemedText } from '@/components/ThemedText'
 import { useThemeColor } from '@/hooks/useThemeColor'
 
+import { styles } from './styles'
+
 export type ThemedInputProps = {
   lightColor?: string
   darkColor?: string
@@ -29,40 +31,30 @@ const ThemedInput = ({
   ...props
 }: ThemedInputProps) => {
   const color = useThemeColor('text', { light: lightColor, dark: darkColor })
+  const colorPlaceholder = useThemeColor('textPlaceholder', { light: lightColor, dark: darkColor })
+  const backgroundInput = useThemeColor('backgroundInput', { light: lightColor, dark: darkColor })
 
   const [isPassword, setIsPassword] = useState(props?.secureTextEntry)
 
   return (
-    <View
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        gap: 0,
-        width: '100%',
-      }}
-    >
-      {label && <ThemedText style={{ width: '100%' }}>{label}</ThemedText>}
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          gap: 0,
-        }}
-      >
+    <View style={[styles.container]}>
+      {label && <ThemedText style={styles.label}>{label}</ThemedText>}
+      <View style={[styles.containerSub, { backgroundColor: backgroundInput }]}>
         {leftIcon && (
-          <TouchableOpacity style={{ marginRight: 5 }} onPress={() => onPressLeftIcon?.()}>
+          <TouchableOpacity style={styles.leftIcon} onPress={() => onPressLeftIcon?.()}>
             <ThemedText>{leftIcon}</ThemedText>
           </TouchableOpacity>
         )}
-        <TextInput style={[{ color, fontSize: 16, flex: 1, paddingLeft: 0 }, style]} {...props} secureTextEntry={isPassword} />
+        <TextInput
+          placeholderTextColor={colorPlaceholder}
+          style={[{ color, fontSize: 16, flex: 1, paddingLeft: 0 }, style]}
+          {...props}
+          secureTextEntry={isPassword}
+        />
 
         {rightIcon && (
           <TouchableOpacity
-            style={{ marginLeft: 5 }}
+            style={styles.rightIcon}
             onPress={() => {
               if (props?.secureTextEntry) {
                 setIsPassword((value) => !value)
@@ -74,25 +66,9 @@ const ThemedInput = ({
           </TouchableOpacity>
         )}
       </View>
-      {/* <View
-        style={{
-          width: '100%',
-          gap: 8,
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
-      
-        {showCount && (
-          <ThemedText {...props?.countConfig} className={props?.countConfig?.className}>
-            {props?.value?.length ?? 0}
-            {props?.maxLength && `/${props?.maxLength}`}
-          </ThemedText>
-        )}
-      </View> */}
 
       {showCount && props?.maxLength && (
-        <ThemedText {...props?.countConfig} style={[{ width: '100%', textAlign: 'right' }]} className={props?.countConfig?.className}>
+        <ThemedText {...props?.countConfig} style={[styles.count, { width: '100%', textAlign: 'right' }]} className={props?.countConfig?.className}>
           {props?.value?.length ?? 0}
           {props?.maxLength && `/${props?.maxLength}`}
         </ThemedText>

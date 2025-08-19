@@ -1,5 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons'
-import { Modal, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native'
+import { Modal, SafeAreaView, ScrollView, StyleSheet, TouchableWithoutFeedback, View, TouchableOpacity } from 'react-native'
 
 import useModal from '@/hooks/useModal'
 import { useThemeColor } from '@/hooks/useThemeColor'
@@ -7,7 +7,7 @@ import { useThemeColor } from '@/hooks/useThemeColor'
 const MyModal = () => {
   const { modal, closeModal } = useModal()
   const backgroundModal = useThemeColor('backgroundModal')
-  const backgroundContentModal = 'backgroundContentModal'
+  const backgroundContentModal = useThemeColor('backgroundContentModal')
   const color = useThemeColor('text')
 
   return (
@@ -35,35 +35,41 @@ const MyModal = () => {
               },
             ]}
           >
-            <SafeAreaView className='flex p-5' style={styles.root}>
-              <View className='p-5'>
-                <View
-                  style={[
-                    styles.content,
-                    {
-                      backgroundColor: backgroundContentModal,
-                    },
-                  ]}
-                  className='rounded-lg  p-3'
-                >
-                  {modal?.showIconClose && (
-                    <View style={styles.iconClose}>
-                      <Ionicons
-                        name='close'
-                        size={24}
-                        color={color}
+            <TouchableWithoutFeedback
+              onPress={() => {
+                if (modal?.maskClosable) {
+                  closeModal()
+                  modal?.onClose?.()
+                }
+              }}
+            >
+              <SafeAreaView style={styles.root}>
+                <TouchableWithoutFeedback>
+                  <View
+                    style={[
+                      styles.content,
+                      {
+                        backgroundColor: backgroundContentModal,
+                      },
+                    ]}
+                  >
+                    {modal?.showIconClose && (
+                      <TouchableOpacity
+                        style={styles.iconClose}
                         onPress={() => {
                           closeModal()
                           modal?.onClose?.()
                         }}
-                      />
-                    </View>
-                  )}
+                      >
+                        <Ionicons name='close' size={24} color={color} />
+                      </TouchableOpacity>
+                    )}
 
-                  {modal.content}
-                </View>
-              </View>
-            </SafeAreaView>
+                    {modal.content}
+                  </View>
+                </TouchableWithoutFeedback>
+              </SafeAreaView>
+            </TouchableWithoutFeedback>
           </ScrollView>
         </Modal>
       ))}
@@ -77,10 +83,11 @@ const styles = StyleSheet.create({
   root: {
     flexGrow: 1,
     justifyContent: 'center',
+    padding: 10,
   },
   content: {
     borderRadius: 8,
-    padding: 20,
+
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -99,7 +106,9 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     width: '100%',
     position: 'absolute',
-    right: 5,
-    top: 5,
+    right: 3,
+    top: 3,
+    padding: 5,
+    zIndex: 1,
   },
 })

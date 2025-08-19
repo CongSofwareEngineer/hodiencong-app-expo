@@ -1,6 +1,7 @@
 import { useRouter } from 'expo-router'
 import React from 'react'
-import { SafeAreaView, View } from 'react-native'
+import { View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 import ThemedScrollView from '@/components/ui/ThemedScrollView'
 import ThemedText from '@/components/ui/ThemedText'
@@ -11,6 +12,7 @@ import useMode from '@/hooks/useMode'
 import { useUser } from '@/hooks/useUser'
 import ThemedCheckbox from '@/components/ui/ThemedCheckbox'
 import { MODE } from '@/constants/app'
+import { styles } from '@/styles/app'
 
 const SettingScreen = () => {
   const { translate } = useLanguage()
@@ -32,7 +34,7 @@ const SettingScreen = () => {
 
   return (
     <ThemedScrollView>
-      <SafeAreaView className='gap-10'>
+      <SafeAreaView style={[styles.safeArea]}>
         <View className='gap-2'>
           <ThemedText>{`${translate('setting.darkMode')} :`}</ThemedText>
           <View className='flex flex-row gap-10 w-full'>
