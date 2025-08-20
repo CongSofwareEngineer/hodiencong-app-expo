@@ -9,14 +9,18 @@ const tintColorDark = '#fff'
 export enum COLORS {
   red = 'red',
   green = 'green',
+  green2 = '#16ff091a',
+  green600 = '#43A047',
   blue = 'blue',
   yellow = 'yellow',
+  white = 'white',
+  gray = '#d1d5db',
 }
 
 export const ColorThemes = {
   light: {
     text: '#11181C',
-    textPlaceholder: '#292d2fff',
+    textPlaceholder: '#8a8e90ff',
     background: '#ECEDEE',
     tint: tintColorLight,
     icon: '#687076',

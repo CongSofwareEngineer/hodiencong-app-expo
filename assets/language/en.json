@@ -13,7 +13,17 @@
   },
   "userName": "Tên người dùng",
   "password": "Mật khẩu",
-  "warning":{
+  "textPopular": {
+    "userName": "Tên người dùng",
+    "password": "Mật khẩu",
+    "passwordAgain": "Nhập lại mật khẩu",
+    "email": "Email",
+    "phone": "Số điện thoại",
+    "fullName": "Họ và tên",
+    "address": "Địa chỉ",
+    "confirmPassword": "Xác nhận mật khẩu"
+  },
+  "warning": {
     "logout": "Bạn có muốn đăng xuất khỏi tài khoản không?",
     "required": "Trường này là bắt buộc",
     "invalidEmail": "Email không hợp lệ",
@@ -29,15 +39,23 @@
     "serverError": "Lỗi máy chủ, vui lòng thử lại sau",
     "unknownError": "Lỗi không xác định, vui lòng thử lại sau",
     "emptyField": "Trường này không được để trống",
-    "invalidInput": "Đầu vào không hợp lệ"
-     
+    "invalidInput": "Đầu vào không hợp lệ",
+    "passwordAgain": "Mật khẩu không khớp, vui lòng nhập lại"
   },
   "placeholder": {
     "enterUserName": "Nhập tên người dùng",
-    "enterPassword": "Nhập mật khẩu"
+    "enterPassword": "Nhập mật khẩu",
+    "enterPasswordAgain": "Nhập mật khẩu lại"
   },
   "login": {
-    "titlePage": "Đăng nhập"
+    "titlePage": "Đăng nhập",
+    "welcome": "Xin chào",
+    "loginToContinue": "Đăng nhập để tiếp tục"
+  },
+  "register": {
+    "titlePage": "Đăng ký",
+    "welcome": "Xin chào",
+    "registerToContinue": "Đăng ký để tiếp tục"
   },
   "homeScreen": {
     "titlePage": "Trang chủ",
@@ -53,7 +71,6 @@
     "dark": "Tối",
     "light": "Sáng"
   },
- 
   "thayHongToan": {
     "listRegister": "Danh sách đăng ký"
   }

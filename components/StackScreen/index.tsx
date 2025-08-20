@@ -40,6 +40,7 @@ const StackScreen = () => {
         options={{
           title: translate('login.titlePage'),
           headerTitleAlign: 'center',
+          headerShown: false,
         }}
         component={LoginScreen}
       />

@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
   },
 
   default: {
-    backgroundColor: COLORS.green,
+    backgroundColor: COLORS.green600,
   },
   primary: {
     backgroundColor: COLORS.yellow,
