@@ -6,7 +6,7 @@
 const tintColorLight = '#0a7ea4'
 const tintColorDark = '#fff'
 
-export enum Colors {
+export enum COLORS {
   red = 'red',
   green = 'green',
   blue = 'blue',

@@ -20,6 +20,8 @@ export default function RootLayout() {
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   })
 
+  console.log({ hydrate, loaded })
+
   if (!loaded || !hydrate) {
     return null
   }

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 
-import { Colors } from '@/constants/Colors'
+import { COLORS } from '@/constants/Colors'
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
     padding: 8,
   },
   containerChildren: {
-    flexGrow: 1,
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
@@ -18,15 +17,15 @@ export const styles = StyleSheet.create({
   },
 
   default: {
-    backgroundColor: Colors.green,
+    backgroundColor: COLORS.green,
   },
   primary: {
-    backgroundColor: Colors.yellow,
+    backgroundColor: COLORS.yellow,
   },
   danger: {
-    backgroundColor: Colors.red,
+    backgroundColor: COLORS.red,
   },
   warning: {
-    backgroundColor: Colors.yellow,
+    backgroundColor: COLORS.yellow,
   },
 })

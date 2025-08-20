@@ -1,10 +1,13 @@
 import { Controller } from 'react-hook-form'
 import { View } from 'react-native'
 
-import { Colors } from '@/constants/Colors'
+import { COLORS } from '@/constants/Colors'
+import useLanguage from '@/hooks/useLanguage'
 
 import ThemedInput, { ThemedInputProps } from '../ThemedInput'
 import ThemedText, { ThemedTextProps } from '../ThemedText'
+
+import styles from './styles'
 
 type Props = {
   configLabel?: ThemedTextProps
@@ -15,22 +18,43 @@ type Props = {
   name: string
   required?: boolean
   errors?: any
+  errorsText?: any
   label?: string
+  placeholder?: string
 }
-const InputForm = ({ configInput, configError, label, errors, configLabel, control, name, showError = true, required = false }: Props) => {
+const InputForm = ({
+  placeholder,
+  configInput,
+  configError,
+  label,
+  errors,
+  configLabel,
+  control,
+  name,
+  showError = true,
+  required = false,
+  errorsText,
+}: Props) => {
+  const { translate } = useLanguage()
+
   return (
-    <View className='w-full'>
-      <ThemedText {...configLabel}>{label}</ThemedText>
+    <View style={styles.container}>
+      <ThemedText {...configLabel} style={[styles.label, configLabel?.style]}>
+        {label}
+      </ThemedText>
       <Controller
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
-          <ThemedInput {...configInput} onBlur={onBlur} onChangeText={(value) => onChange(value)} value={value} />
+          <ThemedInput placeholder={placeholder} {...configInput} onBlur={onBlur} onChangeText={(value) => onChange(value)} value={value} />
         )}
         name={name}
         rules={{ required: required }}
       />
-      <ThemedText {...configError} style={[{ opacity: showError && errors ? 1 : 0, fontSize: 12, color: Colors.red }, configError?.style]}>
-        {errors}
+      <ThemedText
+        {...configError}
+        style={[styles.error, { opacity: showError && errors ? 1 : 0, fontSize: 12, color: COLORS.red }, configError?.style]}
+      >
+        {errorsText || translate('warning.required')}
       </ThemedText>
     </View>
   )

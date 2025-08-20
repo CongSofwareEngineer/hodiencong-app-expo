@@ -4,7 +4,7 @@ import { View } from 'react-native'
 
 import ThemedScrollView from '@/components/ui/ThemedScrollView'
 import ThemedText from '@/components/ui/ThemedText'
-import { Colors } from '@/constants/Colors'
+import { COLORS } from '@/constants/Colors'
 import useLanguage from '@/hooks/useLanguage'
 import useModal from '@/hooks/useModal'
 import useMode from '@/hooks/useMode'
@@ -14,7 +14,7 @@ import { MODE } from '@/constants/app'
 import SafeAreaView from '@/components/SafeAreaView'
 import { LANGUAGE_SUPPORT } from '@/type/language'
 
-import { styles } from './styles'
+import styles from './styles'
 
 const SettingScreen = () => {
   const { translate, lang } = useLanguage()
@@ -64,7 +64,7 @@ const SettingScreen = () => {
 
         <ThemedText
           style={{
-            color: Colors.red,
+            color: COLORS.red,
           }}
           onPress={() => {
             console.log('logout')

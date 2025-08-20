@@ -11,7 +11,7 @@ import useModal from '@/hooks/useModal'
 import SafeAreaView from '@/components/SafeAreaView'
 import ThemedTouchable from '@/components/ThemedTouchable'
 
-import { styles } from './style'
+import styles from './style'
 
 const HomeScreen = () => {
   const [text, settext] = useState('')

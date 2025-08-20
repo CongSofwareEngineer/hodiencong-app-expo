@@ -31,11 +31,18 @@ const StackScreen = () => {
       screenOptions={{
         animation: 'slide_from_right',
       }}
-      initialRouteName={!isLogin ? '(tabs)' : 'login'}
+      initialRouteName={isLogin ? '(tabs)' : 'login'}
     >
       <Screen name='+not-found' component={NotFoundScreen} />
       <Screen name='home' component={HomeScreen} />
-      <Screen name='login' options={{ title: translate('login.titlePage') }} component={LoginScreen} />
+      <Screen
+        name='login'
+        options={{
+          title: translate('login.titlePage'),
+          headerTitleAlign: 'center',
+        }}
+        component={LoginScreen}
+      />
       <Screen name='tc-store' options={{ title: 'TC Store' }} component={TcStoreScreen} />
       <Screen name='tc-store/production' options={{ title: translate('production.titlePage') }} component={ProductionScreen} />
       <Screen name='thayhongtoan/list-register' options={{ title: translate('thayHongToan.listRegister') }} component={ListRegisterScreen} />

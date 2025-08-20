@@ -5,7 +5,6 @@ import AntDesign from '@expo/vector-icons/AntDesign'
 import Entypo from '@expo/vector-icons/Entypo'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 
-import useLanguage from '@/hooks/useLanguage'
 import { useThemeColor } from '@/hooks/useThemeColor'
 import { ColorThemes } from '@/constants/Colors'
 import { HapticTab } from '@/components/HapticTab'
@@ -21,15 +20,16 @@ const Tab = createBottomTabNavigator()
 
 const TabNavigation = () => {
   const { mode } = useMode()
-  const { translate } = useLanguage()
   const background = useThemeColor('background')
 
   return (
     <Tab.Navigator
       initialRouteName='home'
       screenOptions={{
+        animation: 'fade',
         tabBarActiveTintColor: ColorThemes[mode].tint,
         headerShown: false,
+
         tabBarButton: HapticTab,
 
         tabBarBackground: TabBarBackground,
@@ -47,6 +47,10 @@ const TabNavigation = () => {
     >
       <Tab.Screen
         options={{
+          tabBarBadge: 3,
+          tabBarStyle: {
+            paddingBottom: 5,
+          },
           tabBarIcon: ({ color }) => <AntDesign name='home' size={24} color={color} />,
         }}
         name='home'
