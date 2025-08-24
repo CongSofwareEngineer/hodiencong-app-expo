@@ -1,9 +1,9 @@
-import { KEY_CHAIN } from '@/constants/keyChain';
-import * as SecureStore from 'expo-secure-store';
-import { MMKV } from 'react-native-mmkv';
+import * as SecureStore from 'expo-secure-store'
+import { MMKV } from 'react-native-mmkv'
+
+import { KEY_CHAIN } from '@/constants/keyChain'
 export const checkSupportSecure = async () => {
   try {
-
     return SecureStore.canUseBiometricAuthentication()
   } catch {
     return false
@@ -26,10 +26,8 @@ export const generateKey = () => {
     binary += String.fromCharCode(randomBytes[i])
   }
 
-
   return btoa(binary).replace(/\+-/g, '@').replace(/\//g, '@').slice(0, 16)
 }
-
 
 const create = async () => {
   let encryptionKey: string | null = process.env.EXPO_PUBLIC_KEY_ENCODE_STORAGE
@@ -38,14 +36,14 @@ const create = async () => {
   if (isSupport) {
     encryptionKey = await SecureStore.getItemAsync(KEY_CHAIN.keyEncrypt, {
       keychainAccessible: SecureStore.WHEN_UNLOCKED,
-      authenticationPrompt: `Auth require ${KEY_CHAIN.keyEncrypt}`
+      authenticationPrompt: `Auth require ${KEY_CHAIN.keyEncrypt}`,
     })
 
     if (!encryptionKey) {
       encryptionKey = generateKey()
       SecureStore.setItemAsync(KEY_CHAIN.keyEncrypt, encryptionKey, {
         keychainAccessible: SecureStore.WHEN_UNLOCKED,
-        authenticationPrompt: `Auth require ${KEY_CHAIN.keyEncrypt}`
+        authenticationPrompt: `Auth require ${KEY_CHAIN.keyEncrypt}`,
       })
     }
   }
@@ -70,11 +68,8 @@ export const getSecureData = async (key: KEY_CHAIN, defaultData: any = null) => 
     const storage = await create()
     const jsonValue = storage.getString(key) ?? ''
 
-
     return JSON.parse(jsonValue)
   } catch {
-
-
     return defaultData
   }
 }

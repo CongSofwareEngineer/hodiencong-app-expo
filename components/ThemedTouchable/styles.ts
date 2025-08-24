@@ -28,4 +28,12 @@ export const styles = StyleSheet.create({
   warning: {
     backgroundColor: COLORS.yellow,
   },
+  text:{
+    backgroundColor:'transparent',  
+    borderWidth:0                 
+  },
+  outLine: {
+    backgroundColor: 'transparent',
+    borderColor: COLORS.gray,
+  },
 })

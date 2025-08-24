@@ -1,8 +1,9 @@
+import { create } from 'zustand'
+import { devtools, persist } from 'zustand/middleware'
+
 import { MODE } from '@/constants/app'
 import { KEY_STORAGE } from '@/constants/storage'
 import { getDataLocal, removeDataLocal, saveDataLocal } from '@/utils/Storage'
-import { create } from 'zustand'
-import { devtools, persist } from 'zustand/middleware'
 
 type ModeState = {
   mode: MODE
@@ -19,23 +20,25 @@ export const modeZustand = create<ModeState>()(
         storage: {
           getItem: () => {
             const mode = getDataLocal(KEY_STORAGE.Mode)
+
             if (mode) {
               return {
                 state: {
-                  mode
-                }
+                  mode,
+                },
               }
             }
+
             return null
           },
           removeItem: () => {
             removeDataLocal(KEY_STORAGE.Mode)
-
           },
           setItem: (_, value) => {
             const mode = value.state.mode
+
             saveDataLocal(KEY_STORAGE.Mode, mode)
-          }
+          },
         },
         name: 'mode-zustand',
       }

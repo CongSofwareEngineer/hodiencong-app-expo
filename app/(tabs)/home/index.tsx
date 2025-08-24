@@ -12,11 +12,13 @@ import SafeAreaView from '@/components/SafeAreaView'
 import ThemedTouchable from '@/components/ThemedTouchable'
 
 import styles from './style'
+import useMode from '@/hooks/useMode'
 
 const HomeScreen = () => {
   const [text, settext] = useState('')
   const { openModal, closeModal } = useModal()
   const colorText = useThemeColor('text')
+  const {mode}=useMode()
 
   const handleLogin = () => {
     openModal({
@@ -66,6 +68,9 @@ const HomeScreen = () => {
         <ThemedTouchable onPress={handleLogin} style={{ marginVertical: 20 }}>
           open Modal
         </ThemedTouchable>
+        <ThemedText>
+          {`mode : ${mode}`}
+        </ThemedText>
 
         <ThemedInput
           showCount
