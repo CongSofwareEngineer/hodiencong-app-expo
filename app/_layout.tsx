@@ -16,12 +16,30 @@ import StackScreen from '@/components/StackScreen'
 import useNotification from '@/hooks/useNotification'
 
 Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldPlaySound: true,
-    shouldSetBadge: true,
-    shouldShowBanner: true,
-    shouldShowList: true,
-  }),
+  handleNotification: async (e) => {
+    console.log({ handleNotification: e })
+    ;(async () => {
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: "You've got mail! 📬",
+          sound: 'mySoundFile.wav', // Provide ONLY the base filename
+        },
+        trigger: {
+          type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+          seconds: 2,
+          channelId: 'new_emails',
+        },
+      })
+    })()
+
+    return {
+      shouldPlaySound: true,
+      shouldSetBadge: true,
+      shouldShowBanner: true,
+      shouldShowList: true,
+      priority: Notifications.AndroidNotificationPriority.HIGH,
+    }
+  },
 })
 
 export default function RootLayout() {
@@ -34,7 +52,7 @@ export default function RootLayout() {
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   })
 
-  console.log({ isHasNotification })
+  console.log({ isHasNotification, token })
 
   useEffect(() => {
     requestNotifications()

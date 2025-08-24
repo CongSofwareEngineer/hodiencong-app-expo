@@ -27,11 +27,17 @@ const useNotification = () => {
           finalStatus = status
         }
         if (finalStatus === 'granted') {
-          const token = await Notifications.getExpoPushTokenAsync({
-            projectId: process.env.EXPO_PUBLIC_EXPO_NOTIFICATION_PROJECT_ID,
-          })
+          const [token, tokenNoti] = await Promise.all([
+            Notifications.getExpoPushTokenAsync({
+              projectId: process.env.EXPO_PUBLIC_EXPO_NOTIFICATION_PROJECT_ID,
+            }),
+            Notifications.getDevicePushTokenAsync(),
+          ])
 
-          setToken(token.data)
+          setToken({
+            tokenExpo: token.data,
+            tokenNoti: tokenNoti?.data,
+          })
         }
         setNotifications(finalStatus)
       }

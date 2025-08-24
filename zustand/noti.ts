@@ -7,8 +7,11 @@ import { KEY_STORAGE } from '@/constants/storage'
 
 type NotificationsState = {
   notification: Notifications.PermissionStatus | null
-  token: string
-  setToken: (token: string) => void
+  token?: {
+    tokenExpo: string
+    tokenNoti: string
+  }
+  setToken: (token: { tokenExpo: string; tokenNoti: string }) => void
   setNotifications: (notification: Notifications.PermissionStatus | null) => void
 }
 
@@ -17,8 +20,8 @@ const notificationZustand = create<NotificationsState>()(
     persist(
       (set) => ({
         notification: null,
-        token: '',
-        setToken: (token: string) => {
+
+        setToken: (token: { tokenExpo: string; tokenNoti: string }) => {
           set({ token })
         },
         setNotifications: (notification: Notifications.PermissionStatus | null) => {
