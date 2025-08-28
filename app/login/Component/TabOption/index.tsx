@@ -2,8 +2,8 @@ import React from 'react'
 import { TouchableOpacity, View } from 'react-native'
 
 import useLanguage from '@/hooks/useLanguage'
-import { ThemedText } from '@/components/ThemedText'
 import useMode from '@/hooks/useMode'
+import ThemedText from '@/components/ui/ThemedText'
 
 import { TabOptions } from '../..'
 

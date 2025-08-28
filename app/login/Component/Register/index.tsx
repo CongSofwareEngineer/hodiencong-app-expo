@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { View } from 'react-native'
 
-import { ThemedText } from '@/components/ThemedText'
 import ThemedTouchable from '@/components/ThemedTouchable'
 import InputForm from '@/components/ui/InputForm'
 import useLanguage from '@/hooks/useLanguage'
+import ThemedText from '@/components/ui/ThemedText'
 
 import styles from '../../styles'
 

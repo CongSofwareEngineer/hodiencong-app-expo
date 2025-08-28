@@ -14,8 +14,6 @@ import { hydrateZustand } from '@/zustand/hydrate'
 import { MODE } from '@/constants/app'
 import StackScreen from '@/components/StackScreen'
 import useNotification from '@/hooks/useNotification'
-import MyDrawer from '@/components/MyDrawer'
-import MyBottomSheet from '@/components/MyBottomSheet'
 
 Notifications.setNotificationHandler({
   handleNotification: async (e) => {
@@ -82,17 +80,13 @@ export default function RootLayout() {
   }
 
   return (
-    <MyDrawer>
-      <MyBottomSheet>
-        <ReactQueryProvider>
-          <ThemeProvider value={colorScheme === MODE.Dark ? DarkTheme : DefaultTheme}>
-            <ClientRender>
-              <StackScreen />
-              <StatusBar style={colorScheme === MODE.Dark ? 'light' : 'dark'} />
-            </ClientRender>
-          </ThemeProvider>
-        </ReactQueryProvider>
-      </MyBottomSheet>
-    </MyDrawer>
+    <ReactQueryProvider>
+      <ThemeProvider value={colorScheme === MODE.Dark ? DarkTheme : DefaultTheme}>
+        <ClientRender>
+          <StackScreen />
+          <StatusBar style={colorScheme === MODE.Dark ? 'light' : 'dark'} />
+        </ClientRender>
+      </ThemeProvider>
+    </ReactQueryProvider>
   )
 }

@@ -5,23 +5,26 @@ import { useForm } from 'react-hook-form'
 
 import useLanguage from '@/hooks/useLanguage'
 import InputForm from '@/components/ui/InputForm'
-import { ThemedText } from '@/components/ThemedText'
 import ThemedTouchable from '@/components/ThemedTouchable'
 import useDrawer from '@/zustand/drawer'
-import { ThemedView } from '@/components/ThemedView'
-import { bottomSheetZustand } from '@/zustand/bottonSheet'
+import ThemedText from '@/components/ui/ThemedText'
+import ThemedScrollView from '@/components/ui/ThemedScrollView'
 
 import styles from '../../styles'
+
 interface FormLogin {
   userName: string
   password: string
 }
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false)
+  const [isModalVisible, setModalVisible] = useState(false)
 
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible)
+  }
   const { translate } = useLanguage()
   const { openDrawer, drawer } = useDrawer()
-  const { bottomSheet, openBottomSheet } = bottomSheetZustand((state) => state)
 
   const router = useRouter()
   const {
@@ -55,7 +58,7 @@ const Login = () => {
     }
   }
 
-  console.log({ errors: errors?.userName?.message })
+  console.log({ errors: errors?.userName?.message, isModalVisible })
 
   return (
     <View style={styles.containerForm}>
@@ -85,11 +88,45 @@ const Login = () => {
         onPress={() => {
           // handleSubmit(handleLogin)
           // router.replace('/home')
-          openBottomSheet({
-            content: (
-              <ThemedView>
+          openDrawer({
+            maskClose: false,
+            children: (
+              <ThemedScrollView>
                 <ThemedText>{translate('login.welcome')}</ThemedText>
-              </ThemedView>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+                <ThemedText>{translate('login.welcome')}</ThemedText>
+              </ThemedScrollView>
             ),
           })
         }}
