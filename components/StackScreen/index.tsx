@@ -9,9 +9,9 @@ import { useUser } from '@/hooks/useUser'
 import ProductionScreen from '@/app/tc-store/production'
 import useLanguage from '@/hooks/useLanguage'
 import TcStoreScreen from '@/app/(tabs)/tc-store'
-import TabNavigation from '@/app/(tabs)/_layout'
 import ListRegisterScreen from '@/app/thayhongtoan/list-register'
 import NotFoundScreen from '@/app/+not-found'
+import TabNavigation from '@/app/(tabs)/_layout'
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
@@ -31,7 +31,7 @@ const StackScreen = () => {
       screenOptions={{
         animation: 'slide_from_right',
       }}
-      initialRouteName={isLogin ? '(tabs)' : 'login'}
+      initialRouteName={!isLogin ? 'home' : 'login'}
     >
       <Screen name='+not-found' component={NotFoundScreen} />
       <Screen name='home' component={HomeScreen} />

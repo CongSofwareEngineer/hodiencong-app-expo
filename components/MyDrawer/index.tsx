@@ -1,5 +1,5 @@
 import Modal from 'react-native-modal'
-import { TouchableOpacity, View } from 'react-native'
+import { ScrollView, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
 
 import useDrawer from '@/zustand/drawer'
 import { height, width } from '@/utils/Systems'
@@ -15,6 +15,7 @@ const MyDrawer = () => {
 
   return drawer?.isVisible ? (
     <Modal
+      scrollHorizontal
       deviceWidth={width(100)}
       style={{
         justifyContent: 'flex-end',
@@ -22,7 +23,6 @@ const MyDrawer = () => {
         height: height(100),
       }}
       hasBackdrop
-      presentationStyle='overFullScreen'
       onBackdropPress={() => {
         if (drawer?.maskClose) {
           closeDrawer()
@@ -37,7 +37,7 @@ const MyDrawer = () => {
       }}
       onModalWillHide={closeDrawer}
       swipeDirection={['down']}
-      // {...(drawer as any)}
+      {...(drawer as any)}
       isVisible={drawer?.isVisible}
     >
       <SafeAreaView
@@ -52,12 +52,18 @@ const MyDrawer = () => {
         ]}
       >
         {drawer?.showTopLine && (
-          <TouchableOpacity onPress={closeDrawer}>
+          <TouchableOpacity
+            onPress={() => {
+              closeDrawer()
+            }}
+          >
             <View style={styles.topLine} />
           </TouchableOpacity>
         )}
 
-        {drawer?.children}
+        <ScrollView style={{ flexGrow: 1 }}>
+          <TouchableWithoutFeedback>{drawer?.children}</TouchableWithoutFeedback>
+        </ScrollView>
       </SafeAreaView>
     </Modal>
   ) : (

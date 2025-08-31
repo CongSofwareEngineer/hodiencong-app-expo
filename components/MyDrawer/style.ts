@@ -4,8 +4,8 @@ import { width } from '@/utils/Systems'
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
-    paddingTop: 10,
+    // padding: 16,
+    // paddingTop: 10,
     backgroundColor: 'white',
   },
   topLine: {
@@ -14,6 +14,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     margin: 'auto',
     borderRadius: 10,
+    marginBottom: 10,
+    marginTop: 10,
   },
 })
 

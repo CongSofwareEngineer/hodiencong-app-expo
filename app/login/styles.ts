@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    // height: height(100),
   },
   containerSafeArea: {
     alignItems: 'center',

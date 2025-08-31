@@ -20,34 +20,49 @@ import useNotification from '@/hooks/useNotification'
 
 messaging().setBackgroundMessageHandler(async (remoteMessage) => {
   console.log('Message handled in the background!', remoteMessage)
+  Notifications.scheduleNotificationAsync({
+    content: {
+      title: "You've got mail! 📬",
+      sound: 'mySoundFile.wav', // Provide ONLY the base filename
+    },
+    trigger: {
+      type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+      seconds: 2,
+      channelId: 'new_emails',
+    },
+  })
 })
 
-Notifications.setNotificationHandler({
-  handleNotification: async (e) => {
-    console.log({ handleNotificationIsRunning: e })
-    ;(async () => {
-      await Notifications.scheduleNotificationAsync({
-        content: {
-          title: "You've got mail! 📬",
-          sound: 'mySoundFile.wav', // Provide ONLY the base filename
-        },
-        trigger: {
-          type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
-          seconds: 2,
-          channelId: 'new_emails',
-        },
-      })
-    })()
+// const BACKGROUND_NOTIFICATION_TASK = 'BACKGROUND-NOTIFICATION-TASK'
 
-    return {
-      shouldPlaySound: true,
-      shouldSetBadge: true,
-      shouldShowBanner: true,
-      shouldShowList: true,
-      priority: Notifications.AndroidNotificationPriority.HIGH,
-    }
-  },
-})
+// Notifications.registerTaskAsync(BACKGROUND_NOTIFICATION_TASK)
+
+// Notifications.setNotificationHandler({
+//   handleNotification: async (e) => {
+//     console.log({ handleNotificationIsRunning: e })
+//     ;(async () => {
+//       await Notifications.scheduleNotificationAsync({
+//         content: {
+//           title: "You've got mail! 📬",
+//           sound: 'mySoundFile.wav', // Provide ONLY the base filename
+//         },
+//         trigger: {
+//           type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+//           seconds: 2,
+//           channelId: 'new_emails',
+//         },
+//       })
+//     })()
+
+//     return {
+//       shouldPlaySound: true,
+//       shouldSetBadge: true,
+//       shouldShowBanner: true,
+//       shouldShowList: true,
+//       priority: Notifications.AndroidNotificationPriority.HIGH,
+//     }
+//   },
+// })
 
 export default function RootLayout() {
   usePreLoadData()
@@ -63,6 +78,21 @@ export default function RootLayout() {
 
   useEffect(() => {
     requestNotifications()
+
+    // messaging().onMessage((message) => {
+    //   console.log({ message })
+    //   Notifications.scheduleNotificationAsync({
+    //     content: {
+    //       title: "You've got mail! 📬",
+    //       sound: 'mySoundFile.wav', // Provide ONLY the base filename
+    //     },
+    //     trigger: {
+    //       type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+    //       seconds: 2,
+    //       channelId: 'new_emails',
+    //     },
+    //   })
+    // })
   }, [])
 
   useEffect(() => {
@@ -81,6 +111,7 @@ export default function RootLayout() {
       }
     }
   }, [isHasNotification, token])
+  console.log({ Constants: Constants.isHeadless })
 
   if (Constants.isHeadless) {
     return (

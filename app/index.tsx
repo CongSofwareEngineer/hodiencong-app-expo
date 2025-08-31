@@ -1,12 +1,9 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+
+import StackScreen from '@/components/StackScreen'
 
 const InitPage = () => {
-  return (
-    <View>
-      <Text> Init Page</Text>
-    </View>
-  )
+  return <StackScreen />
 }
 
 export default InitPage

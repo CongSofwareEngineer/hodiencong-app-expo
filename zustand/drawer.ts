@@ -1,6 +1,5 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
-import type {} from 'react-native-drawer-layout'
 import { ModalProps } from 'react-native-modal'
 
 type Drawer = {

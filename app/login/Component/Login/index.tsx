@@ -8,7 +8,7 @@ import InputForm from '@/components/ui/InputForm'
 import ThemedTouchable from '@/components/ThemedTouchable'
 import useDrawer from '@/zustand/drawer'
 import ThemedText from '@/components/ui/ThemedText'
-import ThemedScrollView from '@/components/ui/ThemedScrollView'
+import { useUser } from '@/hooks/useUser'
 
 import styles from '../../styles'
 
@@ -19,6 +19,7 @@ interface FormLogin {
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [isModalVisible, setModalVisible] = useState(false)
+  const { setUser } = useUser()
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible)
@@ -58,7 +59,7 @@ const Login = () => {
     }
   }
 
-  console.log({ errors: errors?.userName?.message, isModalVisible })
+  // console.log({ errors: errors?.userName?.message, isModalVisible })
 
   return (
     <View style={styles.containerForm}>
@@ -87,48 +88,14 @@ const Login = () => {
       <ThemedTouchable
         onPress={() => {
           // handleSubmit(handleLogin)
-          // router.replace('/home')
-          openDrawer({
-            maskClose: false,
-            children: (
-              <ThemedScrollView>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-                <ThemedText>{translate('login.welcome')}</ThemedText>
-              </ThemedScrollView>
-            ),
+          setUser({
+            age: 20,
+            password: 'password',
+            userName: 'admin',
+            token: 'token',
+            tokenRefresh: 'tokenRefresh',
           })
+          router.replace('/home')
         }}
         loading={isLoading}
         style={styles.btnLogin}

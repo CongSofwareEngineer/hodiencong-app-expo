@@ -1,5 +1,5 @@
 import React from 'react'
-import { Platform, View } from 'react-native'
+import { Platform } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import AntDesign from '@expo/vector-icons/AntDesign'
 import Entypo from '@expo/vector-icons/Entypo'
@@ -15,13 +15,13 @@ import HomeScreen from './home'
 import TcStoreScreen from './tc-store'
 import ThayHongToanScreen from './thayhongtoan'
 import SettingScreen from './setting'
-import ThemedTouchable from '@/components/ThemedTouchable'
 
 const Tab = createBottomTabNavigator()
 
 const TabNavigation = () => {
   const { mode } = useMode()
   const background = useThemeColor('background')
+
   return (
     <Tab.Navigator
       initialRouteName='home'
@@ -29,30 +29,24 @@ const TabNavigation = () => {
         animation: 'fade',
         tabBarActiveTintColor: ColorThemes[mode].tint,
         headerShown: false,
-        
+
         tabBarButton: HapticTab,
 
         tabBarBackground: TabBarBackground,
         tabBarStyle: {
           ...Platform.select({
             ios: {
-
               // Use a transparent background on iOS to show the blur effect
               position: 'absolute',
             },
             android: {
               // position:'absolute'
             },
-            default: {
-
-            },
-
+            default: {},
           }),
           height: '8%',
           minHeight: 60,
-          maxHeight:120,
-          
-           
+          maxHeight: 120,
         },
         sceneStyle: {
           backgroundColor: background,
@@ -62,16 +56,16 @@ const TabNavigation = () => {
       <Tab.Screen
         options={{
           tabBarBadge: 3,
-          tabBarItemStyle:{
+          tabBarItemStyle: {
             // display:'flex',
             // justifyContent:'center',
             // alignItems:'center',
           },
-          
+
           // tabBarButton: e=>{
           //   return (
           //     <View
-              
+
           //     >
           //       {<ThemedTouchable
           //         onPress={(ev)=>{
@@ -83,8 +77,8 @@ const TabNavigation = () => {
           //       </ThemedTouchable>}
           //     </View>
           //   )
-          // },  
-         
+          // },
+
           tabBarIcon: ({ color }) => <AntDesign name='home' size={24} color={color} />,
         }}
         name='home'
@@ -92,10 +86,8 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         options={{
-          
           tabBarIcon: ({ color }) => <Entypo name='shop' size={24} color={color} />,
         }}
-
         name='tc-store'
         component={TcStoreScreen}
       />
