@@ -5,6 +5,9 @@ import 'react-native-reanimated'
 
 import * as Notifications from 'expo-notifications'
 import { useEffect } from 'react'
+import Constants from 'expo-constants'
+import { Text, View } from 'react-native'
+import messaging from '@react-native-firebase/messaging'
 
 import ClientRender from '@/components/ClientRender'
 import ReactQueryProvider from '@/components/ReactQueryProvider'
@@ -15,9 +18,13 @@ import { MODE } from '@/constants/app'
 import StackScreen from '@/components/StackScreen'
 import useNotification from '@/hooks/useNotification'
 
+messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+  console.log('Message handled in the background!', remoteMessage)
+})
+
 Notifications.setNotificationHandler({
   handleNotification: async (e) => {
-    console.log({ handleNotification: e })
+    console.log({ handleNotificationIsRunning: e })
     ;(async () => {
       await Notifications.scheduleNotificationAsync({
         content: {
@@ -74,6 +81,14 @@ export default function RootLayout() {
       }
     }
   }, [isHasNotification, token])
+
+  if (Constants.isHeadless) {
+    return (
+      <View>
+        <Text>Headless</Text>
+      </View>
+    )
+  }
 
   if (!loaded || !hydrate) {
     return null
