@@ -1,15 +1,16 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
+import type {} from 'react-native-drawer-layout'
+import { ModalProps } from 'react-native-modal'
 
 type Drawer = {
-  // config?: DrawerPackage
-  open?: boolean
-  content?: React.ReactNode
   afterClose?: () => any
-  onClose?: () => any
-  showIconClose?: boolean
-  maskClosable?: boolean
-}
+  position?: 'left' | 'right' | 'top' | 'bottom'
+  maskClose?: boolean
+  showTopLine?: boolean
+  height?: number
+  width?: number
+} & Partial<ModalProps>
 
 type DrawerState = {
   drawer: Drawer
@@ -20,10 +21,21 @@ type DrawerState = {
 export const drawerZustand = create<DrawerState>()(
   devtools(
     (set, get) => ({
-      drawer: [],
+      drawer: {},
 
-      openDrawer: (drawer?: Drawer) => {
-        set({ drawer })
+      openDrawer: (drawer: Drawer) => {
+        set({
+          drawer: {
+            // height: height(60),
+            // width: width(100),
+            maskClose: true,
+            showTopLine: true,
+            ...drawer,
+            position: drawer.position || 'bottom',
+            animationIn: drawer?.animationIn || 'fadeInUp',
+            isVisible: true,
+          },
+        })
       },
       closeDrawer: () => {
         const drawer = get().drawer
@@ -32,8 +44,9 @@ export const drawerZustand = create<DrawerState>()(
 
         set({
           drawer: {
-            content: null,
-            open: false,
+            ...drawer,
+            children: null,
+            isVisible: false,
           },
         })
       },

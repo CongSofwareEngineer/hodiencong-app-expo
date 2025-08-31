@@ -4056,6 +4056,16 @@ expo-modules-core@2.5.0:
   dependencies:
     invariant "^2.2.4"
 
+expo-navigation-bar@^4.2.7:
+  version "4.2.7"
+  resolved "https://registry.yarnpkg.com/expo-navigation-bar/-/expo-navigation-bar-4.2.7.tgz#ad23634813fe7d732619277d8689349b077fea1e"
+  integrity sha512-UjLeC1V/Qg7dwRihriDJritz0+OhGPiCfmmrilqCfna7D6ZSb5DjsOdHjWm/dUnUaHgOsXwOL1DCRhHn6GqmiA==
+  dependencies:
+    "@react-native/normalize-colors" "0.79.5"
+    debug "^4.3.2"
+    react-native-edge-to-edge "1.6.0"
+    react-native-is-edge-to-edge "^1.1.6"
+
 expo-notifications@^0.31.4:
   version "0.31.4"
   resolved "https://registry.yarnpkg.com/expo-notifications/-/expo-notifications-0.31.4.tgz#295a4345f7fea6ff974df9005790dda1d17ce00e"
@@ -6291,12 +6301,12 @@ react-is@^19.1.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-19.1.1.tgz#038ebe313cf18e1fd1235d51c87360eb87f7c36a"
   integrity sha512-tr41fA15Vn8p4X9ntI+yCyeGSf1TlYaY5vlTZfQmeLBrFo3psOPX6HhTDnFNL9uj3EhP0KAQ80cugCl4b4BERA==
 
-react-native-drawer-layout@^4.1.12:
-  version "4.1.12"
-  resolved "https://registry.yarnpkg.com/react-native-drawer-layout/-/react-native-drawer-layout-4.1.12.tgz#0cdfe2d2ca9288cb099f1e1808c8addf2fad25de"
-  integrity sha512-oKolvp5seiUieG+RHGjpFe8rH8Ds24iW0QBl31TlCVOX7tdn42IQIBl5tuD1i7h3q+VqqnbcT+NB2dcJ5suZkw==
+react-native-animatable@1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.4.0.tgz#05a259e1566081ce7d3f6fba1e92edc65f5c6160"
+  integrity sha512-DZwaDVWm2NBvBxf7I0wXKXLKb/TxDnkV53sWhCvei1pRyTX3MVFpkvdYBknNBqPrxYuAIlPxEp7gJOidIauUkw==
   dependencies:
-    use-latest-callback "^0.2.4"
+    prop-types "^15.8.1"
 
 react-native-edge-to-edge@1.6.0:
   version "1.6.0"
@@ -6326,6 +6336,13 @@ react-native-mmkv@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/react-native-mmkv/-/react-native-mmkv-3.3.0.tgz#a0816babdf68afd2bfd881a48e28c8815795286b"
   integrity sha512-2iPjIJ+IAODXN35wm53EN6nv+hR/0NXLLiLWOdPA/0gXDB2dYVrr6MqvoiFpxhLhdj0B8fkf5ARNVavJaSvuuQ==
+
+react-native-modal@^14.0.0-rc.1:
+  version "14.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-14.0.0-rc.1.tgz#d193af884c910ec34a4953508c7656b5fc83d7d4"
+  integrity sha512-v5pvGyx1FlmBzdHyPqBsYQyS2mIJhVmuXyNo5EarIzxicKhuoul6XasXMviGcXboEUT0dTYWs88/VendojPiVw==
+  dependencies:
+    react-native-animatable "1.4.0"
 
 react-native-reanimated@~3.17.4:
   version "3.17.5"
