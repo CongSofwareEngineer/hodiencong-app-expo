@@ -9,7 +9,7 @@ interface Props extends SafeAreaViewProps {
 
 const SafeAreaView = ({ children, ...props }: Props) => {
   return (
-    <SafeAreaViewPackage {...props} style={[styles.safeArea, props?.style]}>
+    <SafeAreaViewPackage edges={['top', 'left', 'right']} {...props} style={[styles.safeArea, props?.style]}>
       {children}
     </SafeAreaViewPackage>
   )

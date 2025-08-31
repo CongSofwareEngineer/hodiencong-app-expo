@@ -44,9 +44,9 @@ const TabNavigation = () => {
             },
             default: {},
           }),
-          height: '8%',
-          minHeight: 60,
-          maxHeight: 120,
+          height: 110,
+          // minHeight: 60,
+          // maxHeight: 120,
         },
         sceneStyle: {
           backgroundColor: background,

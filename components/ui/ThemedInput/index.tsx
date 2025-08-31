@@ -1,8 +1,9 @@
 import { ReactNode, useState } from 'react'
 import { TextInput, TextInputProps, TouchableOpacity, View } from 'react-native'
 
-import { ThemedText } from '@/components/ui/ThemedText'
 import { useThemeColor } from '@/hooks/useThemeColor'
+
+import ThemedText from '../ThemedText'
 
 import { styles } from './styles'
 

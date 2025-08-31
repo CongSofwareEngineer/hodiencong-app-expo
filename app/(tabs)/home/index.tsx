@@ -1,16 +1,16 @@
-import { Link } from 'expo-router'
-import React, { useState } from 'react'
-import { View, TouchableOpacity } from 'react-native'
+import { useState } from 'react'
+import { TouchableOpacity, View } from 'react-native'
 import AntDesign from '@expo/vector-icons/AntDesign'
+import { Link } from 'expo-router'
 
-import ThemedInput from '@/components/ui/ThemedInput'
 import ThemedScrollView from '@/components/ui/ThemedScrollView'
 import ThemedText from '@/components/ui/ThemedText'
-import { useThemeColor } from '@/hooks/useThemeColor'
 import useModal from '@/hooks/useModal'
+import useMode from '@/hooks/useMode'
+import { useThemeColor } from '@/hooks/useThemeColor'
 import SafeAreaView from '@/components/SafeAreaView'
 import ThemedTouchable from '@/components/ThemedTouchable'
-import useMode from '@/hooks/useMode'
+import ThemedInput from '@/components/ui/ThemedInput'
 
 import styles from './style'
 

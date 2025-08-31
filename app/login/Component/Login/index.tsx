@@ -95,7 +95,7 @@ const Login = () => {
             token: 'token',
             tokenRefresh: 'tokenRefresh',
           })
-          router.replace('/home')
+          router.push('/tc-store')
         }}
         loading={isLoading}
         style={styles.btnLogin}

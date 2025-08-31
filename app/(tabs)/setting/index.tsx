@@ -1,6 +1,7 @@
 import { useRouter } from 'expo-router'
 import React from 'react'
 import { View } from 'react-native'
+import AntDesign from '@expo/vector-icons/AntDesign'
 
 import ThemedScrollView from '@/components/ui/ThemedScrollView'
 import ThemedText from '@/components/ui/ThemedText'
@@ -15,6 +16,8 @@ import SafeAreaView from '@/components/SafeAreaView'
 import { LANGUAGE_SUPPORT } from '@/type/language'
 
 import styles from './styles'
+import ContainerOption from './Component/ContainerOption'
+import ItemOptions from './Component/ItemOptions'
 
 const SettingScreen = () => {
   const { translate, lang } = useLanguage()
@@ -29,14 +32,16 @@ const SettingScreen = () => {
       router.replace('/login')
     }
 
+    router.replace('/login')
+
     // openModal({
     //   content: <ModalWarning onSubmit={callback} title={translate('warning.logout')} />,
     // })
   }
 
   return (
-    <ThemedScrollView>
-      <SafeAreaView style={[styles.container]}>
+    <SafeAreaView>
+      <ThemedScrollView contentContainerStyle={[styles.container]}>
         <View style={[styles.containerItem]}>
           <ThemedText type='subtitle' style={{ width: '100%', textAlign: 'center', marginTop: 20 }}>{`${translate('setting.titlePage')}`}</ThemedText>
           <ThemedText>{`${translate('setting.darkMode')}`}</ThemedText>
@@ -49,6 +54,122 @@ const SettingScreen = () => {
             </ThemedCheckbox>
           </View>
         </View>
+
+        <ContainerOption title={'Ứng dụng'}>
+          <ItemOptions
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+          <ItemOptions
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+          <ItemOptions
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+          <ItemOptions
+            noLineBottom
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+        </ContainerOption>
+        <ContainerOption title={'Ứng dụng'}>
+          <ItemOptions
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+          <ItemOptions
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+          <ItemOptions
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+          <ItemOptions
+            noLineBottom
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+        </ContainerOption>
+        <ContainerOption title={'Ứng dụng'}>
+          <ItemOptions
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+          <ItemOptions
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+          <ItemOptions
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+          <ItemOptions
+            noLineBottom
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+        </ContainerOption>
+        <ContainerOption title={'Ứng dụng'}>
+          <ItemOptions
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+          <ItemOptions
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+          <ItemOptions
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+          <ItemOptions
+            noLineBottom
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+        </ContainerOption>
+        <ContainerOption title={'Ứng dụng'}>
+          <ItemOptions
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+          <ItemOptions
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+          <ItemOptions
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+          <ItemOptions
+            noLineBottom
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+        </ContainerOption>
 
         <View style={[styles.containerItem]}>
           <ThemedText>{`${translate('setting.language')} :`}</ThemedText>
@@ -73,8 +194,8 @@ const SettingScreen = () => {
         >
           {translate('common.logout')}
         </ThemedText>
-      </SafeAreaView>
-    </ThemedScrollView>
+      </ThemedScrollView>
+    </SafeAreaView>
   )
 }
 

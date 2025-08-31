@@ -17,16 +17,16 @@ export default function LoginScreen() {
   const [tabs, setTabs] = useState<TabOptions>('login')
 
   return (
-    <KeyboardAvoidingView keyboardVerticalOffset={0} behavior={isIos() ? 'padding' : undefined} style={styles.container}>
-      <ScrollView>
-        <SafeAreaView style={[styles.containerSafeArea, { backgroundColor: COLORS.green2 }]}>
+    <KeyboardAvoidingView behavior={isIos() ? 'padding' : 'height'} style={styles.container}>
+      <SafeAreaView style={[styles.containerSafeArea, { backgroundColor: COLORS.green2 }]}>
+        <ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: 'center', gap: 20 }}>
           <View style={styles.logoContainer}>
             <FontAwesome name='home' size={50} color='white' />
           </View>
           <TabOption onChange={setTabs} value={tabs} />
           {tabs === 'login' ? <Login /> : <Register />}
-        </SafeAreaView>
-      </ScrollView>
+        </ScrollView>
+      </SafeAreaView>
     </KeyboardAvoidingView>
   )
 }

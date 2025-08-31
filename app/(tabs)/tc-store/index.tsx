@@ -7,14 +7,65 @@ import SafeAreaView from '@/components/SafeAreaView'
 
 const TcStoreScreen = () => {
   return (
-    <ThemedScrollView>
-      <SafeAreaView>
+    <SafeAreaView>
+      <ThemedScrollView>
         <ThemedText>TcStoreScreen</ThemedText>
         <Link href={'/tc-store/production'}>
           <ThemedText type='link'>Product</ThemedText>
         </Link>
-      </SafeAreaView>
-    </ThemedScrollView>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+        <ThemedText type='link'>Product</ThemedText>
+      </ThemedScrollView>
+    </SafeAreaView>
   )
 }
 

@@ -31,7 +31,7 @@ const StackScreen = () => {
       screenOptions={{
         animation: 'slide_from_right',
       }}
-      initialRouteName={!isLogin ? 'home' : 'login'}
+      initialRouteName={!isLogin ? 'login' : 'login'}
     >
       <Screen name='+not-found' component={NotFoundScreen} />
       <Screen name='home' component={HomeScreen} />
