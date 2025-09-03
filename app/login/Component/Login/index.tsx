@@ -19,7 +19,7 @@ interface FormLogin {
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [isModalVisible, setModalVisible] = useState(false)
-  const { setUser } = useUser()
+  const { login } = useUser()
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible)
@@ -88,13 +88,7 @@ const Login = () => {
       <ThemedTouchable
         onPress={() => {
           // handleSubmit(handleLogin)
-          setUser({
-            age: 20,
-            password: 'password',
-            userName: 'admin',
-            token: 'token',
-            tokenRefresh: 'tokenRefresh',
-          })
+          login('admin', 'password')
           router.push('/tc-store')
         }}
         loading={isLoading}

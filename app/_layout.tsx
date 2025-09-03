@@ -1,8 +1,8 @@
+import 'react-native-reanimated'
+
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
 import { useFonts } from 'expo-font'
 import { StatusBar } from 'expo-status-bar'
-import 'react-native-reanimated'
-
 import * as Notifications from 'expo-notifications'
 import { useEffect } from 'react'
 import Constants from 'expo-constants'
@@ -23,13 +23,13 @@ messaging().setBackgroundMessageHandler(async (remoteMessage) => {
   Notifications.scheduleNotificationAsync({
     content: {
       title: "You've got mail! 📬",
-      sound: 'mySoundFile.wav', // Provide ONLY the base filename
     },
-    trigger: {
-      type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
-      seconds: 2,
-      channelId: 'new_emails',
-    },
+    trigger: null,
+    // trigger: {
+    //   type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+    //   seconds: 2,
+    //   channelId: 'new_emails',
+    // },
   })
 })
 
@@ -74,8 +74,6 @@ export default function RootLayout() {
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   })
 
-  console.log({ isHasNotification, token })
-
   useEffect(() => {
     requestNotifications()
 
@@ -93,6 +91,7 @@ export default function RootLayout() {
     //     },
     //   })
     // })
+    return () => {}
   }, [])
 
   useEffect(() => {
@@ -111,7 +110,7 @@ export default function RootLayout() {
       }
     }
   }, [isHasNotification, token])
-  console.log({ Constants: Constants.isHeadless })
+  console.log({ isHeadless: Constants.isHeadless })
 
   if (Constants.isHeadless) {
     return (

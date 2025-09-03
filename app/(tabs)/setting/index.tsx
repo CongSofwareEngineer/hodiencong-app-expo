@@ -22,7 +22,7 @@ import ItemOptions from './Component/ItemOptions'
 const SettingScreen = () => {
   const { translate, lang } = useLanguage()
   const { mode, setMode } = useMode()
-  const { setUser } = useUser()
+  const { setUser, isLogin } = useUser()
   const { openModal } = useModal()
   const router = useRouter()
 
@@ -41,9 +41,10 @@ const SettingScreen = () => {
 
   return (
     <SafeAreaView>
+      <ThemedText type='subtitle' style={{ width: '100%', textAlign: 'center', marginTop: 20 }}>{`${translate('setting.titlePage')}`}</ThemedText>
+
       <ThemedScrollView contentContainerStyle={[styles.container]}>
         <View style={[styles.containerItem]}>
-          <ThemedText type='subtitle' style={{ width: '100%', textAlign: 'center', marginTop: 20 }}>{`${translate('setting.titlePage')}`}</ThemedText>
           <ThemedText>{`${translate('setting.darkMode')}`}</ThemedText>
           <View style={styles.containerItemSub}>
             <ThemedCheckbox onChange={(e) => setMode(MODE.Dark)} checked={mode === MODE.Dark}>

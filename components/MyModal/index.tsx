@@ -104,7 +104,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     textAlign: 'right',
-    width: '100%',
     position: 'absolute',
     right: 3,
     top: 3,

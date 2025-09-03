@@ -92,7 +92,7 @@ const useLanguage = () => {
 
   return {
     translate,
-    lang: (language?.locale || LANGUAGE_SUPPORT.EN) as LANGUAGE_SUPPORT,
+    lang: (language?.locale?.toLowerCase?.() || LANGUAGE_SUPPORT.VN) as LANGUAGE_SUPPORT,
     setLanguage,
   }
 }
