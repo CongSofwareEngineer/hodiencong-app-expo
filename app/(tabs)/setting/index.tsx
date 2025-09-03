@@ -14,6 +14,7 @@ import ThemedCheckbox from '@/components/ui/ThemedCheckbox'
 import { MODE } from '@/constants/app'
 import SafeAreaView from '@/components/SafeAreaView'
 import { LANGUAGE_SUPPORT } from '@/type/language'
+import ThemeSwitch from '@/components/ui/ThemeSwitch'
 
 import styles from './styles'
 import ContainerOption from './Component/ContainerOption'
@@ -57,34 +58,7 @@ const SettingScreen = () => {
         </View>
 
         <ContainerOption title={'Ứng dụng'}>
-          <ItemOptions
-            text={'thoong bao'}
-            rightIcon={<AntDesign name='notification' size={24} />}
-            icon={<AntDesign name='notification' size={24} />}
-          />
-          <ItemOptions
-            text={'thoong bao'}
-            rightIcon={<AntDesign name='notification' size={24} />}
-            icon={<AntDesign name='notification' size={24} />}
-          />
-          <ItemOptions
-            text={'thoong bao'}
-            rightIcon={<AntDesign name='notification' size={24} />}
-            icon={<AntDesign name='notification' size={24} />}
-          />
-          <ItemOptions
-            noLineBottom
-            text={'thoong bao'}
-            rightIcon={<AntDesign name='notification' size={24} />}
-            icon={<AntDesign name='notification' size={24} />}
-          />
-        </ContainerOption>
-        <ContainerOption title={'Ứng dụng'}>
-          <ItemOptions
-            text={'thoong bao'}
-            rightIcon={<AntDesign name='notification' size={24} />}
-            icon={<AntDesign name='notification' size={24} />}
-          />
+          <ItemOptions text={'thoong bao'} rightIcon={<ThemeSwitch />} icon={<AntDesign name='notification' size={24} />} />
           <ItemOptions
             text={'thoong bao'}
             rightIcon={<AntDesign name='notification' size={24} />}
@@ -170,6 +144,24 @@ const SettingScreen = () => {
             rightIcon={<AntDesign name='notification' size={24} />}
             icon={<AntDesign name='notification' size={24} />}
           />
+        </ContainerOption>
+        <ContainerOption title={'Ứng dụng'}>
+          <ItemOptions
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+          <ItemOptions
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+          <ItemOptions
+            text={'thoong bao'}
+            rightIcon={<AntDesign name='notification' size={24} />}
+            icon={<AntDesign name='notification' size={24} />}
+          />
+          <ItemOptions noLineBottom text={'thoong bao'} rightIcon={<AntDesign name='notification' size={24} />} icon={<ThemeSwitch />} />
         </ContainerOption>
 
         <View style={[styles.containerItem]}>
