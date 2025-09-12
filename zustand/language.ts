@@ -4,6 +4,7 @@ import { devtools, persist } from 'zustand/middleware'
 import MessageEN from '@/assets/language/en.json'
 import { KEY_STORAGE } from '@/constants/storage'
 import { getDataLocal, removeDataLocal, saveDataLocal } from '@/utils/Storage'
+import { TYPE_LANGUAGE } from '@/type/language'
 
 enum LANGUAGE_SUPPORT {
   VN = 'vn',
@@ -12,14 +13,14 @@ enum LANGUAGE_SUPPORT {
 type LanguageState = {
   language: {
     locale: LANGUAGE_SUPPORT
-    messages: MessageEN
+    messages: TYPE_LANGUAGE
   }
   setLanguage: (locale: LANGUAGE_SUPPORT) => void
 }
 
 type Language = {
   locale: LANGUAGE_SUPPORT
-  messages: MessageEN
+  messages: TYPE_LANGUAGE
 }
 
 const getLanguage = (language: LANGUAGE_SUPPORT): Language => {

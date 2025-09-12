@@ -1,4 +1,4 @@
-import { KEY_CHAIN } from '@/constants/keyChain'
+import { KEY_STORAGE } from '@/constants/storage'
 import { saveSecureData } from '@/utils/secureStorage'
 import { userZustand } from '@/zustand/user'
 
@@ -12,7 +12,7 @@ export const useUser = () => {
       token: 'token',
       tokenRefresh: 'tokenRefresh',
     })
-    await saveSecureData(KEY_CHAIN.UserData, {
+    await saveSecureData(KEY_STORAGE.UserData, {
       age: 20,
       password: 'password',
       userName: 'admin',

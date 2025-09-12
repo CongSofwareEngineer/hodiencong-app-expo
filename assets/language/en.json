@@ -69,7 +69,10 @@
     "language": "Ngôn ngữ",
     "darkMode": "Chế độ",
     "dark": "Tối",
-    "light": "Sáng"
+    "light": "Sáng",
+    "system": "Hệ thống",
+    "notification": "Thông báo",
+    "changePassword": "Đổi mật khẩu"
   },
   "thayHongToan": {
     "listRegister": "Danh sách đăng ký"

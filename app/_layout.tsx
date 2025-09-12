@@ -5,9 +5,9 @@ import { useFonts } from 'expo-font'
 import { StatusBar } from 'expo-status-bar'
 import * as Notifications from 'expo-notifications'
 import { useEffect } from 'react'
-import Constants from 'expo-constants'
-import { Text, View } from 'react-native'
 import messaging from '@react-native-firebase/messaging'
+import { useLinkingURL, parse } from 'expo-linking'
+import { useRouter } from 'expo-router'
 
 import ClientRender from '@/components/ClientRender'
 import ReactQueryProvider from '@/components/ReactQueryProvider'
@@ -37,35 +37,45 @@ messaging().setBackgroundMessageHandler(async (remoteMessage) => {
 
 // Notifications.registerTaskAsync(BACKGROUND_NOTIFICATION_TASK)
 
-// Notifications.setNotificationHandler({
-//   handleNotification: async (e) => {
-//     console.log({ handleNotificationIsRunning: e })
-//     ;(async () => {
-//       await Notifications.scheduleNotificationAsync({
-//         content: {
-//           title: "You've got mail! 📬",
-//           sound: 'mySoundFile.wav', // Provide ONLY the base filename
-//         },
-//         trigger: {
-//           type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
-//           seconds: 2,
-//           channelId: 'new_emails',
-//         },
-//       })
-//     })()
+Notifications.setNotificationHandler({
+  handleNotification: async (e) => {
+    console.log({ handleNotificationIsRunning: e })
+    ;(async () => {
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: "You've got mail! 📬",
+          sound: 'mySoundFile.wav', // Provide ONLY the base filename
+        },
+        trigger: {
+          type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+          seconds: 2,
+          channelId: 'new_emails',
+        },
+      })
+    })()
 
-//     return {
-//       shouldPlaySound: true,
-//       shouldSetBadge: true,
-//       shouldShowBanner: true,
-//       shouldShowList: true,
-//       priority: Notifications.AndroidNotificationPriority.HIGH,
-//     }
-//   },
-// })
+    return {
+      shouldPlaySound: true,
+      shouldSetBadge: true,
+      shouldShowBanner: true,
+      shouldShowList: true,
+      priority: Notifications.AndroidNotificationPriority.HIGH,
+    }
+  },
+})
+
+Notifications.addNotificationReceivedListener((notification) => {
+  console.log({ notificationListener: notification })
+})
+
+Notifications.addNotificationResponseReceivedListener((response) => {
+  console.log({ responseListener: response })
+})
 
 export default function RootLayout() {
   usePreLoadData()
+  const url = useLinkingURL()
+  const router = useRouter()
   const { isHasNotification, token, requestNotifications } = useNotification()
   const { mode: colorScheme } = useMode()
   const { hydrate } = hydrateZustand()
@@ -73,6 +83,19 @@ export default function RootLayout() {
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   })
+
+  useEffect(() => {
+    const initialURL = url
+
+    if (initialURL) {
+      const { hostname, path, queryParams } = parse(initialURL)
+
+      console.log({ hostname, path, queryParams })
+      if (queryParams?.wc) {
+        // router.replace('approve-wc')
+      }
+    }
+  }, [url, router])
 
   useEffect(() => {
     requestNotifications()
@@ -94,31 +117,22 @@ export default function RootLayout() {
     return () => {}
   }, [])
 
-  useEffect(() => {
-    if (isHasNotification && token) {
-      const notificationListener = Notifications.addNotificationReceivedListener((notification) => {
-        console.log({ notification })
-      })
+  // useEffect(() => {
+  //   if (isHasNotification && token) {
+  //     const notificationListener = Notifications.addNotificationReceivedListener((notification) => {
+  //       console.log({ notificationListener: notification })
+  //     })
 
-      const responseListener = Notifications.addNotificationResponseReceivedListener((response) => {
-        console.log(response)
-      })
+  //     const responseListener = Notifications.addNotificationResponseReceivedListener((response) => {
+  //       console.log({ responseListener: response })
+  //     })
 
-      return () => {
-        notificationListener.remove()
-        responseListener.remove()
-      }
-    }
-  }, [isHasNotification, token])
-  console.log({ isHeadless: Constants.isHeadless })
-
-  if (Constants.isHeadless) {
-    return (
-      <View>
-        <Text>Headless</Text>
-      </View>
-    )
-  }
+  //     return () => {
+  //       notificationListener.remove()
+  //       responseListener.remove()
+  //     }
+  //   }
+  // }, [isHasNotification, token])
 
   if (!loaded || !hydrate) {
     return null

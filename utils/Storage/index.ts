@@ -1,15 +1,12 @@
 import { MMKV } from 'react-native-mmkv'
 
-
-
 const create = () => {
-
   const storage = new MMKV({ id: 'LOCAL_STORAGE', encryptionKey: process.env.EXPO_PUBLIC_KEY_ENCODE_STORAGE })
 
   return storage
 }
 
-export const getDataLocal = (key: string,) => {
+export const getDataLocal = (key: string) => {
   try {
     const storage = create()
     const jsonValue = storage.getString(key) ?? ''
@@ -20,7 +17,7 @@ export const getDataLocal = (key: string,) => {
   }
 }
 
-export const removeDataLocal = (key: string,) => {
+export const removeDataLocal = (key: string) => {
   try {
     const storage = create()
 
@@ -32,7 +29,7 @@ export const removeDataLocal = (key: string,) => {
   }
 }
 
-export const saveDataLocal = (key: string, value: any,) => {
+export const saveDataLocal = (key: string, value: any) => {
   try {
     const storage = create()
 

@@ -9,6 +9,7 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
+      "associatedDomains": ["applinks:hodiencong.app"],
       "supportsTablet": true,
       "googleServicesFile": "./GoogleService-Info.plist",
       "bundleIdentifier": "hodiencong.ios.app",
@@ -31,7 +32,27 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": [
+            {
+              "scheme": "https",
+              "host": "hodiencong.app",
+              "pathPrefix": "/"
+            },
+            {
+              "scheme": "hodiencong",
+              "host": "app"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -41,9 +62,9 @@
     "plugins": [
       [
         "expo-notifications",
-       {
-         "enableBackgroundRemoteNotifications": true
-       }
+        {
+          "enableBackgroundRemoteNotifications": true
+        }
       ],
       "expo-router",
       "@react-native-firebase/app",

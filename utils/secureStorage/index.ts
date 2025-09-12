@@ -1,7 +1,7 @@
 import * as SecureStore from 'expo-secure-store'
 import { MMKV } from 'react-native-mmkv'
 
-import { KEY_CHAIN } from '@/constants/keyChain'
+import { KEY_STORAGE } from '@/constants/storage'
 export const checkSupportSecure = async () => {
   try {
     return SecureStore.canUseBiometricAuthentication()
@@ -34,16 +34,16 @@ const create = async () => {
   const isSupport = await checkSupportSecure()
 
   if (isSupport) {
-    encryptionKey = await SecureStore.getItemAsync(KEY_CHAIN.keyEncrypt, {
+    encryptionKey = await SecureStore.getItemAsync(KEY_STORAGE.keyEncrypt, {
       keychainAccessible: SecureStore.WHEN_UNLOCKED,
-      authenticationPrompt: `Auth require ${KEY_CHAIN.keyEncrypt}`,
+      authenticationPrompt: `Auth require ${KEY_STORAGE.keyEncrypt}`,
     })
 
     if (!encryptionKey) {
       encryptionKey = generateKey()
-      SecureStore.setItemAsync(KEY_CHAIN.keyEncrypt, encryptionKey, {
+      SecureStore.setItemAsync(KEY_STORAGE.keyEncrypt, encryptionKey, {
         keychainAccessible: SecureStore.WHEN_UNLOCKED,
-        authenticationPrompt: `Auth require ${KEY_CHAIN.keyEncrypt}`,
+        authenticationPrompt: `Auth require ${KEY_STORAGE.keyEncrypt}`,
       })
     }
   }
@@ -53,7 +53,7 @@ const create = async () => {
   return storage
 }
 
-export const saveSecureData = async (key: KEY_CHAIN, value: any) => {
+export const saveSecureData = async (key: KEY_STORAGE, value: any) => {
   try {
     const storage = await create()
 
@@ -63,7 +63,7 @@ export const saveSecureData = async (key: KEY_CHAIN, value: any) => {
   }
 }
 
-export const getSecureData = async (key: KEY_CHAIN, defaultData: any = null) => {
+export const getSecureData = async (key: KEY_STORAGE, defaultData: any = null) => {
   try {
     const storage = await create()
     const jsonValue = storage.getString(key) ?? ''
@@ -74,7 +74,7 @@ export const getSecureData = async (key: KEY_CHAIN, defaultData: any = null) => 
   }
 }
 
-export const removeSecureData = async (key: KEY_CHAIN) => {
+export const removeSecureData = async (key: KEY_STORAGE) => {
   try {
     const storage = await create()
 

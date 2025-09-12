@@ -17,7 +17,7 @@ const useLanguage = () => {
 
       arrKey.forEach((e: any) => {
         if (!raw) {
-          raw = language?.messages[e]
+          raw = language?.messages[e as keyof TYPE_LANGUAGE]
         } else {
           raw = raw[e]
         }

@@ -21,23 +21,17 @@ export const modeZustand = create<ModeState>()(
           getItem: () => {
             const mode = getDataLocal(KEY_STORAGE.Mode)
 
-            if (mode) {
-              return {
-                state: {
-                  mode,
-                },
-              }
+            return {
+              state: {
+                mode: mode || MODE.Light,
+              },
             }
-
-            return null
           },
           removeItem: () => {
             removeDataLocal(KEY_STORAGE.Mode)
           },
           setItem: (_, value) => {
-            const mode = value.state.mode
-
-            saveDataLocal(KEY_STORAGE.Mode, mode)
+            saveDataLocal(KEY_STORAGE.Mode, value.state.mode)
           },
         },
         name: 'mode-zustand',
