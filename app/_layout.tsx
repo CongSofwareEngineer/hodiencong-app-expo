@@ -1,4 +1,5 @@
 import 'react-native-reanimated'
+import '@walletconnect/react-native-compat'
 
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
 import { useFonts } from 'expo-font'
@@ -17,6 +18,7 @@ import { hydrateZustand } from '@/zustand/hydrate'
 import { MODE } from '@/constants/app'
 import StackScreen from '@/components/StackScreen'
 import useNotification from '@/hooks/useNotification'
+import useWalletConnect from '@/hooks/useWalletConnect'
 
 messaging().setBackgroundMessageHandler(async (remoteMessage) => {
   console.log('Message handled in the background!', remoteMessage)
@@ -74,6 +76,7 @@ Notifications.addNotificationResponseReceivedListener((response) => {
 
 export default function RootLayout() {
   usePreLoadData()
+  const { subscribe } = useWalletConnect()
   const url = useLinkingURL()
   const router = useRouter()
   const { isHasNotification, token, requestNotifications } = useNotification()
@@ -83,6 +86,12 @@ export default function RootLayout() {
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   })
+
+  useEffect(() => {
+    if (token?.tokenNoti) {
+      subscribe()
+    }
+  }, [token])
 
   useEffect(() => {
     const initialURL = url

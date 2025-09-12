@@ -3,4 +3,3 @@ const images = {
 }
 
 export default images
-export type Images = typeof images

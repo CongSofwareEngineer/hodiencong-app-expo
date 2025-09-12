@@ -17,7 +17,7 @@ export const ellipsis = (value: string, pre: number, post: number) => {
 }
 
 export const sleep = async (time = 500) => {
-  return new Promise((resolve) => {
+  await new Promise((resolve) => {
     setTimeout(() => {
       resolve(true)
     }, time)
