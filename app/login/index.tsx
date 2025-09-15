@@ -13,6 +13,7 @@ const Login = lazy(() => import('./Component/Login'))
 const Register = lazy(() => import('./Component/Register'))
 
 export type TabOptions = 'login' | 'register' | 'forgotPassword'
+
 export default function LoginScreen() {
   const [tabs, setTabs] = useState<TabOptions>('login')
 
