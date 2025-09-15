@@ -88,16 +88,14 @@ export default function RootLayout() {
   })
 
   useEffect(() => {
-    if (token?.tokenNoti) {
+    if (token?.tokenNoti && isHasNotification) {
       subscribe()
     }
-  }, [token])
+  }, [token && isHasNotification])
 
   useEffect(() => {
-    const initialURL = url
-
-    if (initialURL) {
-      const { hostname, path, queryParams } = parse(initialURL)
+    if (url) {
+      const { hostname, path, queryParams } = parse(url)
 
       console.log({ hostname, path, queryParams })
       if (queryParams?.wc) {
