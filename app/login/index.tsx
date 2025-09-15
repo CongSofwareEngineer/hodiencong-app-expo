@@ -1,6 +1,6 @@
 // import { useForm } from 'react-hook-form'
 import { KeyboardAvoidingView, ScrollView, View } from 'react-native'
-import { useState } from 'react'
+import { lazy, useState } from 'react'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 
 import { isIos } from '@/utils/functions'
@@ -8,9 +8,9 @@ import SafeAreaView from '@/components/SafeAreaView'
 import { COLORS } from '@/constants/Colors'
 
 import styles from './styles'
-import Login from './Component/Login'
 import TabOption from './Component/TabOption'
-import Register from './Component/Register'
+const Login = lazy(() => import('./Component/Login'))
+const Register = lazy(() => import('./Component/Register'))
 
 export type TabOptions = 'login' | 'register' | 'forgotPassword'
 export default function LoginScreen() {
