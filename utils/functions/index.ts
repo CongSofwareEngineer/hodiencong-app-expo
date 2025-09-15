@@ -1,4 +1,5 @@
 import { Platform } from 'react-native'
+import * as Clipboard from 'expo-clipboard'
 
 export const isAndroid = () => {
   return Platform.OS === 'android'
@@ -22,4 +23,28 @@ export const sleep = async (time = 500) => {
       resolve(true)
     }, time)
   })
+}
+
+export const copyToClipboard = async (text: any, type: 'text' | 'url' | 'image') => {
+  switch (type) {
+    case 'url':
+      await Clipboard.setUrlAsync(text)
+      break
+    case 'image':
+      await Clipboard.setImageAsync(text)
+      break
+    default:
+      await Clipboard.setStringAsync(text)
+  }
+}
+
+export const pastToClipboard = async (value: any, type: 'text' | 'url' | 'image') => {
+  switch (type) {
+    case 'url':
+      return Clipboard.setUrlAsync(value)
+    case 'image':
+      return Clipboard.setImageAsync(value)
+    default:
+      return Clipboard.setStringAsync(value)
+  }
 }

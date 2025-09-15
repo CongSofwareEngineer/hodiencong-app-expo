@@ -1,12 +1,12 @@
 import { lazy, ReactNode } from 'react'
+import { Platform, SafeAreaView } from 'react-native'
 
-// import MyModal from '../MyModal'
 const MyModal = lazy(() => import('../MyModal'))
 const MyDrawer = lazy(() => import('../MyDrawer'))
 const ClientRender = ({ children }: { children: ReactNode }) => {
   return (
     <>
-      {children}
+      {Platform.OS === 'ios' ? children : <SafeAreaView style={{ flex: 1 }}>{children}</SafeAreaView>}
       <MyModal />
       <MyDrawer />
     </>

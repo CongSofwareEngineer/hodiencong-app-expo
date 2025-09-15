@@ -1910,6 +1910,13 @@
   dependencies:
     "@radix-ui/react-compose-refs" "1.1.2"
 
+"@react-native-community/datetimepicker@^8.4.5":
+  version "8.4.5"
+  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-8.4.5.tgz#982d70c6879d6b7f9cc736d00cf47c0038afdae6"
+  integrity sha512-vvVOJAHjU8TFBzTUjQzANCL6C3pZSE2zjfutCATk790uz7ASEc2tOBD+EIG4BTelWtP2G9jqvXp2L7XGdhEBRg==
+  dependencies:
+    invariant "^2.2.4"
+
 "@react-native-firebase/app@^23.0.1":
   version "23.0.1"
   resolved "https://registry.npmjs.org/@react-native-firebase/app/-/app-23.0.1.tgz"
@@ -4327,10 +4334,27 @@ expo-build-properties@^0.14.8:
     ajv "^8.11.0"
     semver "^7.6.0"
 
+expo-calendar@^15.0.7:
+  version "15.0.7"
+  resolved "https://registry.yarnpkg.com/expo-calendar/-/expo-calendar-15.0.7.tgz#d3afc1882c4c9bb5a5e3a73a57c4681e18f7ce53"
+  integrity sha512-llMpiRElC8Vq1YMHfn9LLGtE/c2BkpeCJnC8gRgliLf+Hnpk+DiqS8KeDut8a8hQ0xSrE1xyjPSfXLTNZG8nQA==
+
+expo-camera@^17.0.7:
+  version "17.0.7"
+  resolved "https://registry.yarnpkg.com/expo-camera/-/expo-camera-17.0.7.tgz#a5393448e660c9b3639754b4245fb20f0fa828f7"
+  integrity sha512-jdZfijfFjlVAuuIkDheA41YKpigPjqsN0juRvgyr7Lcyz+fvwZ3/RP50/n/hvuozH657wHxPfiyVVFa00z8TcQ==
+  dependencies:
+    invariant "^2.2.4"
+
 expo-checkbox@^4.1.4:
   version "4.1.4"
   resolved "https://registry.npmjs.org/expo-checkbox/-/expo-checkbox-4.1.4.tgz"
   integrity sha512-sahBTVble5/6EnHgLyGvX6fAytkZ7vmllHUbX5ko1kTQ59qTdiVmCznxqaT5DNWfxRZ0gdQVlao46dGQ3hbmeQ==
+
+expo-clipboard@^8.0.7:
+  version "8.0.7"
+  resolved "https://registry.yarnpkg.com/expo-clipboard/-/expo-clipboard-8.0.7.tgz#f81d279036408bbe074ef748623e1ae6f170d391"
+  integrity sha512-zvlfFV+wB2QQrQnHWlo0EKHAkdi2tycLtE+EXFUWTPZYkgu1XcH+aiKfd4ul7Z0SDF+1IuwoiW9AA9eO35aj3Q==
 
 expo-constants@~17.1.7:
   version "17.1.7"
@@ -4412,6 +4436,11 @@ expo-keep-awake@~14.1.4:
   resolved "https://registry.npmjs.org/expo-keep-awake/-/expo-keep-awake-14.1.4.tgz"
   integrity sha512-wU9qOnosy4+U4z/o4h8W9PjPvcFMfZXrlUoKTMBW7F4pLqhkkP/5G4EviPZixv4XWFMjn1ExQ5rV6BX8GwJsWA==
 
+expo-linear-gradient@^15.0.7:
+  version "15.0.7"
+  resolved "https://registry.yarnpkg.com/expo-linear-gradient/-/expo-linear-gradient-15.0.7.tgz#d1ebbda5ecc58afb58398f5a06affd0e83894149"
+  integrity sha512-yF+y+9Shpr/OQFfy/wglB/0bykFMbwHBTuMRa5Of/r2P1wbkcacx8rg0JsUWkXH/rn2i2iWdubyqlxSJa3ggZA==
+
 expo-linking@~7.1.7:
   version "7.1.7"
   resolved "https://registry.npmjs.org/expo-linking/-/expo-linking-7.1.7.tgz"
@@ -4419,6 +4448,11 @@ expo-linking@~7.1.7:
   dependencies:
     expo-constants "~17.1.7"
     invariant "^2.2.4"
+
+expo-location@^19.0.7:
+  version "19.0.7"
+  resolved "https://registry.yarnpkg.com/expo-location/-/expo-location-19.0.7.tgz#58ab5b9b59db3a26d0495c19e719d5f559948b1c"
+  integrity sha512-YNkh4r9E6ECbPkBCAMG5A5yHDgS0pw+Rzyd0l2ZQlCtjkhlODB55nMCKr5CZnUI0mXTkaSm8CwfoCO8n2MpYfg==
 
 expo-manifests@~0.16.6:
   version "0.16.6"
@@ -4457,6 +4491,11 @@ expo-navigation-bar@^4.2.7:
     debug "^4.3.2"
     react-native-edge-to-edge "1.6.0"
     react-native-is-edge-to-edge "^1.1.6"
+
+expo-network@^8.0.7:
+  version "8.0.7"
+  resolved "https://registry.yarnpkg.com/expo-network/-/expo-network-8.0.7.tgz#37f0ed984f4cc57482d3c1c3bf4d4eb3359e0b03"
+  integrity sha512-qmISU2tcSHmy1PD3Zd83XXxegcvGPlZSxACTSjE+bD9o3miQRT0HS5YP5MeH97PLiRduGpyUq38kMF5N//mqrQ==
 
 expo-notifications@^0.31.4:
   version "0.31.4"
