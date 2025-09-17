@@ -18,6 +18,7 @@ import { hydrateZustand } from '@/zustand/hydrate'
 import { MODE } from '@/constants/app'
 import StackScreen from '@/components/StackScreen'
 import useNotification from '@/hooks/useNotification'
+import { setupReactotron } from '@/config/reactotron'
 import useWalletConnect from '@/hooks/useWalletConnect'
 
 messaging().setBackgroundMessageHandler(async (remoteMessage) => {
@@ -66,15 +67,17 @@ Notifications.setNotificationHandler({
   },
 })
 
-Notifications.addNotificationReceivedListener((notification) => {
-  console.log({ notificationListener: notification })
-})
+// Notifications.addNotificationReceivedListener((notification) => {
+//   console.log({ notificationListener: notification })
+// })
 
-Notifications.addNotificationResponseReceivedListener((response) => {
-  console.log({ responseListener: response })
-})
-
+// Notifications.addNotificationResponseReceivedListener((response) => {
+//   console.log({ responseListener: response })
+// })
+setupReactotron()
 export default function RootLayout() {
+  // Initialize Reactotron in dev
+
   usePreLoadData()
   const { subscribe } = useWalletConnect()
   const url = useLinkingURL()
