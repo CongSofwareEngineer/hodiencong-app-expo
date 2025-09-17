@@ -14,7 +14,7 @@ const Register = lazy(() => import('./Component/Register'))
 
 export type TabOptions = 'login' | 'register' | 'forgotPassword'
 
-export default function LoginScreen() {
+function LoginScreen() {
   const [tabs, setTabs] = useState<TabOptions>('login')
 
   return (
@@ -31,3 +31,4 @@ export default function LoginScreen() {
     </KeyboardAvoidingView>
   )
 }
+export default LoginScreen
