@@ -74,9 +74,11 @@ Notifications.setNotificationHandler({
 // Notifications.addNotificationResponseReceivedListener((response) => {
 //   console.log({ responseListener: response })
 // })
-setupReactotron()
 export default function RootLayout() {
   // Initialize Reactotron in dev
+  if (process.env.EXPO_PUBLIC_MODE !== 'production') {
+    setupReactotron()
+  }
 
   usePreLoadData()
   const { subscribe } = useWalletConnect()

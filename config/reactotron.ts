@@ -23,4 +23,23 @@ export const setupReactotron = () => {
   }
 }
 
+// Helper to log structured data to Reactotron (dev only)
+export const logData = (name: string, value: unknown, options?: { preview?: string; important?: boolean }) => {
+  if (!__DEV__) return
+  try {
+    const preview = options?.preview ?? (typeof value === 'string' ? value : undefined)
+
+    Reactotron.display?.({
+      name,
+      value,
+      preview,
+      important: options?.important ?? false,
+    })
+  } catch (e) {
+    // Fallback to console in case Reactotron isn't available
+    // eslint-disable-next-line no-console
+    console.log(`[Reactotron logData:${name}]`, value)
+  }
+}
+
 export default Reactotron
